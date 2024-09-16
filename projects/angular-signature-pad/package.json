@@ -1,6 +1,6 @@
 {
   "name": "@almothafar/angular-signature-pad",
-  "version": "5.0.1",
+  "version": "6.0.0",
   "scripts": {
     "build": "ng-packagr -p package.json",
     "build:prod": "rimraf dist && ng build angular-signature-pad --prod"
@@ -27,6 +27,6 @@
     "@angular/core": ">=12.0.0"
   },
   "dependencies": {
-    "signature_pad": "~4.0.7"
+    "signature_pad": "~5.0.3"
   }
 }
