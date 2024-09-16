@@ -21,8 +21,20 @@
       ],
       "rules": {
         "no-underscore-dangle": "off",
-        "semi": ["error", "always"],
-        "no-console": ["error", { "allow": ["log","warn", "error"] }],
+        "semi": [
+          "error",
+          "always"
+        ],
+        "no-console": [
+          "error",
+          {
+            "allow": [
+              "log",
+              "warn",
+              "error"
+            ]
+          }
+        ],
         "@typescript-eslint/explicit-member-accessibility": [
           "off",
           {
@@ -33,7 +45,11 @@
           "error",
           {
             "selector": "variable",
-            "format": ["camelCase", "UPPER_CASE", "PascalCase"],
+            "format": [
+              "camelCase",
+              "UPPER_CASE",
+              "PascalCase"
+            ],
             "leadingUnderscore": "allow"
           }
         ],
