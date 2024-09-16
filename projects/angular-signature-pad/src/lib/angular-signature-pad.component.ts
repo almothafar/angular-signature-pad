@@ -93,7 +93,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   /**
    * Draws signature image from data URL
    */
-  public fromDataURL(dataURL: string, options: { ratio?: number; width?: number; height?: number } = {}): void {
+  public fromDataURL(dataURL: string, options: { ratio?: number; width?: number; height?: number } = {}): Promise<void> {
     // set default height and width on read data from URL
     if (!options.hasOwnProperty('height') && this.options.canvasHeight) {
       options.height = this.options.canvasHeight;
@@ -101,7 +101,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     if (!options.hasOwnProperty('width') && this.options.canvasWidth) {
       options.width = this.options.canvasWidth;
     }
-    this.signaturePad.fromDataURL(dataURL, options);
+    return this.signaturePad.fromDataURL(dataURL, options);
   }
 
   /**
