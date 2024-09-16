@@ -8,8 +8,8 @@
     "inlineSources": true,
     "types": [],
     "lib": [
-      "dom",
-      "es2018"
+      "DOM",
+      "ESNext"
     ]
   },
   "angularCompilerOptions": {
