@@ -10,8 +10,7 @@
       ],
       "parserOptions": {
         "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
+          "tsconfig.json"
         ],
         "createDefaultProgram": true
       },
@@ -41,18 +40,6 @@
             "accessibility": "explicit"
           }
         ],
-        "@typescript-eslint/naming-convention": [
-          "error",
-          {
-            "selector": "variable",
-            "format": [
-              "camelCase",
-              "UPPER_CASE",
-              "PascalCase"
-            ],
-            "leadingUnderscore": "allow"
-          }
-        ],
         "@angular-eslint/component-selector": "off",
         "@angular-eslint/directive-selector": "off",
         "@angular-eslint/use-lifecycle-interface": [
@@ -62,7 +49,6 @@
           "off",
           "always"
         ],
-        "import/order": "off",
         "max-len": [
           "error",
           {

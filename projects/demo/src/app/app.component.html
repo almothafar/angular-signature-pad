@@ -1,0 +1,34 @@
+<h1>
+  {{title}}
+</h1>
+
+<form [formGroup]="form" (submit)="submit()" (window:resize)="beResponsive()">
+  <div class="row">
+    <button type="button" (click)="clear()" [disabled]="!form.controls.signatureField1.valid && !form.controls.signatureField2.valid && !form.controls.signatureField3.valid">Clear</button>
+    <button type="submit" [disabled]="!form.valid">Submit</button>
+  </div>
+  <div class="sig-container">
+    <div class="row">
+      <button type="button" (click)="sigs.first.clear()" [disabled]="!form.controls.signatureField1.valid">Clear Sig 1</button>
+    </div>
+    <div class="row"  #sigContainer1>
+      <app-signature-field [options]="{background: 'url(/assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 0, 0)'}" formControlName="signatureField1"></app-signature-field>
+    </div>
+  </div>
+  <div class="sig-container">
+    <div class="row">
+      <button type="button" (click)="sigs.get(1).clear()" [disabled]="!form.controls.signatureField2.valid">Clear Sig 2</button>
+    </div>
+    <div class="row" #sigContainer2>
+      <app-signature-field [options]="{background: 'rgb(0, 0, 255) url(/assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 255, 0)'}" formControlName="signatureField2"></app-signature-field>
+    </div>
+  </div>
+  <div class="sig-container">
+    <div class="row">
+      <button type="button" (click)="sigs.last.clear()" [disabled]="!form.controls.signatureField3.valid">Clear Sig 3</button>
+    </div>
+    <div class="row sig-container-image" #sigContainer3>
+      <app-signature-field [options]="{background: 'url(/assets/sign-here.png) bottom left no-repeat, center / cover url(/assets/cat-sig.png)'}" formControlName="signatureField3"></app-signature-field>
+    </div>
+  </div>
+</form>

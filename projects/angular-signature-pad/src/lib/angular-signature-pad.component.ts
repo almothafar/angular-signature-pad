@@ -2,8 +2,10 @@ import { AfterContentInit, Component, ElementRef, EventEmitter, Input, OnDestroy
 import SignaturePad, { Options, PointGroup } from 'signature_pad';
 
 export interface NgSignaturePadOptions extends Options {
-  canvasHeight: number;
-  canvasWidth: number;
+  canvasHeight?: number;
+  canvasWidth?: number;
+
+  background?: string;
 }
 
 @Component({
@@ -36,6 +38,10 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
 
     if (this.options.canvasWidth) {
       canvas.width = this.options.canvasWidth;
+    }
+
+    if (this.options.background) {
+      canvas.style.background = this.options.background;
     }
 
     this.signaturePad = new SignaturePad(canvas, this.options);

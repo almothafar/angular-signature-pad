@@ -11,6 +11,9 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "lib": [
       "ESNext",
       "DOM"
@@ -19,9 +22,15 @@
       "angular-signature-pad": [
         "dist/angular-signature-pad",
         "dist/"
+      ],
+      "demo": [
+        "demo"
       ]
     },
     "useDefineForClassFields": false
   },
-  "angularCompilerOptions": {}
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
 }

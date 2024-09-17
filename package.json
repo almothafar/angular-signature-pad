@@ -5,13 +5,13 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "rimraf dist && ng build angular-signature-pad --configuration production && npm run copyREADME",
+    "build:prod": "rimraf dist && ng build angular-signature-pad --configuration production && npm run copyExtra",
+    "build:demo": "rimraf demo && ng build demo --configuration production",
     "pack": "cd dist/ && npm pack",
     "publish": "cd dist/ && npm publish --access=public",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "copyREADME": "node -e \"require('fs').cpSync('README.md', './dist/README.md');\""
+    "copyExtra": "node -e \"require('fs').copyFileSync('README.md', './dist/README.md');require('fs').copyFileSync('CHANGELOG.md', './dist/CHANGELOG.md');\""
   },
   "dependencies": {
     "@angular/animations": "^18.2.4",
