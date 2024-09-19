@@ -1,11 +1,10 @@
-import { AfterContentInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import SignaturePad, { Options, PointGroup } from 'signature_pad';
+import {AfterContentInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
+import SignaturePad, {Options, PointGroup} from 'signature_pad';
 
 export interface NgSignaturePadOptions extends Options {
+  canvasBackground?: string;
   canvasHeight?: number;
   canvasWidth?: number;
-
-  background?: string;
 }
 
 @Component({
@@ -15,6 +14,7 @@ export interface NgSignaturePadOptions extends Options {
 })
 export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   @Input() public options: NgSignaturePadOptions;
+
   @Output() public drawStart: EventEmitter<MouseEvent | Touch>;
   @Output() public drawBeforeUpdate: EventEmitter<MouseEvent | Touch>;
   @Output() public drawAfterUpdate: EventEmitter<MouseEvent | Touch>;
@@ -22,7 +22,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
 
   private signaturePad: SignaturePad;
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private _elementRef: ElementRef) {
     this.options = this.options || {} as NgSignaturePadOptions;
     this.drawStart = new EventEmitter<MouseEvent | Touch>();
     this.drawBeforeUpdate = new EventEmitter<MouseEvent | Touch>();
@@ -31,24 +31,8 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   }
 
   public ngAfterContentInit(): void {
-    const canvas: HTMLCanvasElement = this.getCanvas();
-    if (this.options.canvasHeight) {
-      canvas.height = this.options.canvasHeight;
-    }
-
-    if (this.options.canvasWidth) {
-      canvas.width = this.options.canvasWidth;
-    }
-
-    if (this.options.background) {
-      canvas.style.background = this.options.background;
-    }
-
-    this.signaturePad = new SignaturePad(canvas, this.options);
-    this.signaturePad.addEventListener('beginStroke', (event: CustomEvent) => this.beginStroke(event.detail));
-    this.signaturePad.addEventListener('beforeUpdateStroke', (event: CustomEvent) => this.beforeUpdateStroke(event.detail));
-    this.signaturePad.addEventListener('afterUpdateStroke', (event: CustomEvent) => this.afterUpdateStroke(event.detail));
-    this.signaturePad.addEventListener('endStroke', (event: CustomEvent) => this.endStroke(event.detail));
+    const canvas: HTMLCanvasElement = this.initCanvas(this.options);
+    this.initSignaturePad(canvas, this.options);
   }
 
   public ngOnDestroy(): void {
@@ -57,6 +41,16 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     canvas.height = 0;
   }
 
+  // noinspection JSUnusedGlobalSymbols
+  public getSignaturePad(): SignaturePad {
+    return this.signaturePad;
+  }
+
+  public getCanvas(): HTMLCanvasElement {
+    return this._elementRef.nativeElement.querySelector('canvas');
+  }
+
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Redraw or Resize canvas, note this will clear data.
    */
@@ -65,12 +59,13 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     // when zoomed out to less than 100%, for some very strange reason,
     // some browsers report devicePixelRatio as less than 1, and only part of the canvas is cleared then.
     const ratio: number = Math.max(window.devicePixelRatio || 1, 1);
-    canvas.width = canvas.offsetWidth * ratio;
-    canvas.height = canvas.offsetHeight * ratio;
+    canvas.width = canvas.offsetWidth * ratio - this._getWidthFix(canvas);
+    canvas.height = canvas.offsetHeight * ratio - this._getHeightFix(canvas);
     canvas.getContext('2d').scale(ratio, ratio);
     this.signaturePad.clear(); // otherwise isEmpty() might return incorrect value
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Returns signature image as an array of point groups
    */
@@ -82,6 +77,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     }
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Draws signature image from an array of point groups
    */
@@ -89,6 +85,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     this.signaturePad.fromData(points);
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Returns signature image as data URL (see https://mdn.io/todataurl for the list of possible parameters)
    */
@@ -96,6 +93,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     return this.signaturePad.toDataURL(imageType, quality); // save image as data URL
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Draws signature image from data URL
    */
@@ -110,13 +108,16 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     return this.signaturePad.fromDataURL(dataURL, options);
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Clears the canvas
    */
   public clear(): void {
     this.signaturePad.clear();
+    this.redrawCanvas();
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Returns true if canvas is empty, otherwise returns false
    */
@@ -124,6 +125,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     return this.signaturePad.isEmpty();
   }
 
+  // noinspection JSUnusedGlobalSymbols
   /**
    * Unbinds all event handlers
    */
@@ -144,16 +146,21 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
    * @param value the value of option
    */
   public set(option: string, value: any): void {
-    const canvas: HTMLCanvasElement = this.getCanvas();
-    switch (option) {
-      case 'canvasHeight':
-        canvas.height = value;
-        break;
-      case 'canvasWidth':
-        canvas.width = value;
-        break;
-      default:
-        this.signaturePad[option] = value;
+    if (option === 'canvasHeight' || option === 'canvasWidth') {
+      const canvas: HTMLCanvasElement = this.getCanvas();
+      const canvasOption = option.replace('canvas', '').toLowerCase();
+      if (canvas[canvasOption] === value) {
+        // Same value, no need to change and redraw
+        return;
+      }
+      canvas[canvasOption] = value - 2;
+      this.redrawCanvas();
+    } else {
+      if (this.signaturePad[option] === value) {
+        // Same value, no need to change and redraw
+        return;
+      }
+      this.signaturePad[option] = value;
     }
   }
 
@@ -179,11 +186,51 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     this.drawEnd.emit(event);
   }
 
-  public getSignaturePad(): SignaturePad {
-    return this.signaturePad;
+  private initCanvas(options: NgSignaturePadOptions): HTMLCanvasElement {
+    const canvas: HTMLCanvasElement = this.getCanvas();
+    if (this.options.canvasHeight) {
+      canvas.height = options.canvasHeight - 2;
+    }
+    if (this.options.canvasWidth) {
+      canvas.width = options.canvasWidth - 2;
+    }
+    if (this.options.canvasBackground) {
+      canvas.style.background = options.canvasBackground;
+    }
+    return canvas;
   }
 
-  public getCanvas(): HTMLCanvasElement {
-    return this.elementRef.nativeElement.querySelector('canvas');
+  private initSignaturePad(canvas: HTMLCanvasElement, options?: Options): void {
+    if (!options.backgroundColor) {
+      options.backgroundColor = '#FFFFFF';
+    }
+    this.signaturePad = new SignaturePad(canvas, options);
+    this.signaturePad.addEventListener('beginStroke', (event: CustomEvent) => this.beginStroke(event.detail));
+    this.signaturePad.addEventListener('beforeUpdateStroke', (event: CustomEvent) => this.beforeUpdateStroke(event.detail));
+    this.signaturePad.addEventListener('afterUpdateStroke', (event: CustomEvent) => this.afterUpdateStroke(event.detail));
+    this.signaturePad.addEventListener('endStroke', (event: CustomEvent) => this.endStroke(event.detail));
+    this.signaturePad.clear();
+  }
+
+  /**
+   * To prevent the growing effect when the redrawCanvas is called for the width
+   * @param canvas
+   * @private
+   */
+  private _getWidthFix(canvas: HTMLCanvasElement) {
+    const computedStyle = getComputedStyle(canvas);
+
+    return parseFloat(computedStyle.borderLeftWidth) + parseFloat(computedStyle.borderRightWidth) + parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
+  }
+
+  /**
+   * To prevent the growing effect when the redrawCanvas is called for the height
+   * @param canvas
+   * @private
+   */
+  private _getHeightFix(canvas: HTMLCanvasElement) {
+    const computedStyle = getComputedStyle(canvas);
+
+    return parseFloat(computedStyle.borderTopWidth) + parseFloat(computedStyle.borderBottomWidth) + parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
   }
 }

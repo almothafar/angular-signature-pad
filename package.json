@@ -3,10 +3,11 @@
   "version": "6.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng build angular-signature-pad --watch",
+    "start:demo": "ng serve demo",
     "build": "ng build",
     "build:prod": "rimraf dist && ng build angular-signature-pad --configuration production && npm run copyExtra",
-    "build:demo": "rimraf demo && ng build demo --configuration production",
+    "build:docs": "rimraf demo && ng build demo --configuration production",
     "pack": "cd dist/ && npm pack",
     "publish": "cd dist/ && npm publish --access=public",
     "test": "ng test",
