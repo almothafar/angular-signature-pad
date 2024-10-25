@@ -1,34 +1,27 @@
 <h1>
-  {{title}}
+  &#64;almothafar/angular-signature-pad demo
 </h1>
 
-<form [formGroup]="form" (submit)="submit()" (window:resize)="beResponsive()">
+<form [formGroup]="form" (submit)="submit()">
   <div class="row">
-    <button type="button" (click)="clear()" [disabled]="!form.controls.signatureField1.valid && !form.controls.signatureField2.valid && !form.controls.signatureField3.valid">Clear</button>
+    <button type="button" (click)="clear()" [disabled]="!form.valid">Clear All</button>
+    <button type="submit">Submit</button>
     <button type="submit" [disabled]="!form.valid">Submit</button>
   </div>
-  <div class="sig-container">
-    <div class="row">
-      <button type="button" (click)="sigs.first.clear()" [disabled]="!form.controls.signatureField1.valid">Clear Sig 1</button>
+  @for (item of items; track item; let idx = $index) {
+    <div class="sig-container">
+      <h3>{{ titles[idx] }}</h3>
+      <div class="row">
+        <button type="button" (click)="sigs.get(idx).clear()" [disabled]="!form.controls['signatureField'+idx].valid">Clear</button>
+      </div>
+      <div class="row" #sigContainer>
+        <div class="col">
+          <app-signature-field [options]="item.options" [imageType]="item.imageType" [quality]="item.quality" [formControlName]="'signatureField'+idx"></app-signature-field>
+        </div>
+        <div class="col">
+          <app-signature-view [signature]="result?.at(idx)"></app-signature-view>
+        </div>
+      </div>
     </div>
-    <div class="row"  #sigContainer1>
-      <app-signature-field [options]="{background: 'url(/assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 0, 0)'}" formControlName="signatureField1"></app-signature-field>
-    </div>
-  </div>
-  <div class="sig-container">
-    <div class="row">
-      <button type="button" (click)="sigs.get(1).clear()" [disabled]="!form.controls.signatureField2.valid">Clear Sig 2</button>
-    </div>
-    <div class="row" #sigContainer2>
-      <app-signature-field [options]="{background: 'rgb(0, 0, 255) url(/assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 255, 0)'}" formControlName="signatureField2"></app-signature-field>
-    </div>
-  </div>
-  <div class="sig-container">
-    <div class="row">
-      <button type="button" (click)="sigs.last.clear()" [disabled]="!form.controls.signatureField3.valid">Clear Sig 3</button>
-    </div>
-    <div class="row sig-container-image" #sigContainer3>
-      <app-signature-field [options]="{background: 'url(/assets/sign-here.png) bottom left no-repeat, center / cover url(/assets/cat-sig.png)'}" formControlName="signatureField3"></app-signature-field>
-    </div>
-  </div>
+  }
 </form>

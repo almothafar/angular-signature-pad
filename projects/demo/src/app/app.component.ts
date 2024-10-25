@@ -1,6 +1,6 @@
-import {AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, QueryList, ViewChildren} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SignatureFieldComponent} from './signature-field/signature-field.component';
+import {SignatureFieldComponent, SignatureFieldConfig} from './signature-field/signature-field.component';
 
 @Component({
   selector: 'app-root',
@@ -8,52 +8,64 @@ import {SignatureFieldComponent} from './signature-field/signature-field.compone
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements AfterViewInit {
+  public items: SignatureFieldConfig[] = [
+    {
+      options: {backgroundColor: 'rgb(255,255,255)'},
+    },
+    {
+      options: {canvasBackground: 'rgb(255, 255, 255) url(/assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 0, 0)'},
+      quality: 0.5,
+      imageType: 'image/jpeg',
+    },
+    {
+      options: {canvasBackground: 'rgb(0, 0, 255) url(/assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 255, 0)'},
+      quality: 0.8,
+      imageType: 'image/jpeg',
+    },
+    {
+      options: {canvasBackground: 'url(/assets/sign-here.png) bottom left no-repeat, center / cover url(/assets/cat-sig.png)', canvasHeight: 400}
+    }
+  ];
+  public titles: string[] = [
+    'Default with white background',
+    'Image Background & Red Pen Color (JPEG/Quality 50%)',
+    'Image with Blue Background & Red Pen Color (JPEG/Quality 80%)',
+    'With image as background'
+  ];
 
-  public title = '@almothafar/angular-signature-pad demo';
   public form: FormGroup;
+  public result: string[];
 
   @ViewChildren(SignatureFieldComponent) public sigs: QueryList<SignatureFieldComponent>;
-  @ViewChild ('sigContainer1') public sigContainer1: ElementRef;
-  @ViewChild ('sigContainer2') public sigContainer2: ElementRef;
-  @ViewChild ('sigContainer3') public sigContainer3: ElementRef;
+  @ViewChildren('sigContainer') public sigContainer: QueryList<ElementRef>;
 
   constructor(fb: FormBuilder) {
-
-    this.form = fb.group({
-      signatureField1: ['', Validators.required],
-      signatureField2: ['', Validators.required],
-      signatureField3: ['', Validators.required]
+    const controls = [...Array(this.items.length)].map((value, index) => {
+      return {[`signatureField${index}`]: ['', Validators.required]};
     });
+    this.form = fb.group(Object.assign({}, ...controls));
   }
 
   public ngAfterViewInit() {
-    this.size(this.sigContainer1, this.sigs.first);
-    this.size(this.sigContainer2, this.sigs.get(1));
-    this.size(this.sigContainer3, this.sigs.last);
-  }
-
-  // set the dimensions of the signature pad canvas
-  public beResponsive() {
-    this.sigs.first.signaturePad.set('canvasWidth', this.sigContainer1.nativeElement.clientWidth);
-    this.sigs.get(1).signaturePad.set('canvasWidth', this.sigContainer2.nativeElement.clientWidth);
-    this.sigs.last.signaturePad.set('canvasWidth', this.sigContainer3.nativeElement.clientWidth);
+    this.sigs.forEach((signature, index) => {
+      this.size(this.sigContainer.get(index), signature);
+    });
   }
 
   public size(container: ElementRef, sig: SignatureFieldComponent) {
-    sig.signaturePad.set('canvasWidth', container.nativeElement.clientWidth);
-    sig.signaturePad.set('canvasHeight', container.nativeElement.clientHeight);
+    sig.signaturePad.set('canvasWidth', sig.nativeElement.clientWidth - 40);
+    sig.signaturePad.set('canvasHeight', sig.nativeElement.clientHeight);
+    sig.signaturePad.clear();
   }
 
   public submit() {
-    console.log('CAPTURED SIGS:');
-    console.log(this.sigs.first.signature);
-    console.log(this.sigs.get(1).signature);
-    console.log(this.sigs.last.signature);
+    this.result = this.sigs.map(signature => signature.signature);
+    console.log('CAPTURED SIGNATURES:', this.result);
   }
 
   public clear() {
-    this.sigs.first.clear();
-    this.sigs.get(1).clear();
-    this.sigs.last.clear();
+    this.sigs.forEach((signature) => signature.signaturePad.clear());
+    this.form.reset();
+    this.result = [];
   }
 }

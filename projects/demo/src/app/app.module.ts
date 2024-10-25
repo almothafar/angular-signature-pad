@@ -5,11 +5,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {SignatureFieldComponent} from './signature-field/signature-field.component';
 import {AngularSignaturePadModule} from 'angular-signature-pad';
+import {NgOptimizedImage} from "@angular/common";
+import {SignatureViewComponent} from "projects/demo/src/app/signature-view/signature-view.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignatureFieldComponent
+    SignatureFieldComponent,
+    SignatureViewComponent
   ],
   bootstrap: [AppComponent],
   imports: [
@@ -17,7 +20,8 @@ import {AngularSignaturePadModule} from 'angular-signature-pad';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularSignaturePadModule
+    AngularSignaturePadModule,
+    NgOptimizedImage
   ],
   providers: [provideZoneChangeDetection({eventCoalescing: true})]
 })

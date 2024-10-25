@@ -1,16 +1,47 @@
+$base-width: 850px;
+
 form {
   padding-top: 20px;
   margin: 0 auto;
-  max-width: 700px;
+  max-width: $base-width + 100;
+
+  h3 {
+    margin: 10px 5px 0;
+  }
+
+  button {
+    margin: 5px;
+  }
 }
 
 .sig-container {
   margin: 10px 0;
   border: dashed 1px black;
-  max-width: 700px;
+  max-width: $base-width;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .col {
+      flex-basis: calc(50% - 40px);
+      flex-grow: 1;
+      flex-shrink: 1;
+      padding: 0 10px;
+    }
+  }
+
+  app-signature-field {
+    margin: 0 auto;
+    max-width: $base-width - 50;
+    display: block;
+  }
 }
 
 .sig-container-image {
   height: 400px;
-  width: 700px;
+  width: $base-width - 50;
 }
