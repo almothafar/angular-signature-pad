@@ -9,7 +9,7 @@
 - New Demo UI and fixing broken showcase.
 - Upgrade `signature_pad` to the latest version (5.0.4) See ([Changelog](https://github.com/szimek/signature_pad/blob/master/CHANGELOG.md#504-2024-10-17))
 - Support Angular 18 (Now it is supporting Angular >= 16, if any issues happened in the future, please report).
--
+- Update dependencies for the project
 
 ## 5.0.1
 
