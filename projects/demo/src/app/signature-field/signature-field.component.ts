@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {SignaturePadComponent} from 'angular-signature-pad';
 import {NgSignaturePadOptions} from "projects/angular-signature-pad/src/lib/angular-signature-pad.component";
@@ -28,6 +28,8 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
   @Input() quality: number;
   @Input() imageType: string;
 
+  @Output() public signatureChanged: EventEmitter<string> = new EventEmitter<string>();
+
   public nativeElement: HTMLElement;
 
   private _signature: string;
@@ -41,6 +43,7 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
   set signature(value: any) {
     this._signature = value;
     console.log('Set signature to ', value);
+    this.signatureChanged.emit(value);
     this.onChange(this.signature);
   }
 
@@ -50,6 +53,14 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
 
   public ngAfterViewInit(): void {
     this.signaturePad.clear();
+  }
+
+  public randomBackgroundColor() {
+    const r = Math.round(Math.random() * 255);
+    const g = Math.round(Math.random() * 255);
+    const b = Math.round(Math.random() * 255);
+
+    this.signaturePad.changeBackgroundColor(`rgb(${r},${g},${b})`);
   }
 
   public writeValue(value: string): void {

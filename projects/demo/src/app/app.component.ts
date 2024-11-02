@@ -34,7 +34,7 @@ export class AppComponent implements AfterViewInit {
   ];
 
   public form: FormGroup;
-  public result: string[];
+  public result: string[] = [];
 
   @ViewChildren(SignatureFieldComponent) public sigs: QueryList<SignatureFieldComponent>;
   @ViewChildren('sigContainer') public sigContainer: QueryList<ElementRef>;
@@ -48,14 +48,17 @@ export class AppComponent implements AfterViewInit {
 
   public ngAfterViewInit() {
     this.sigs.forEach((signature, index) => {
-      this.size(this.sigContainer.get(index), signature);
+      this.size(signature);
     });
   }
 
-  public size(container: ElementRef, sig: SignatureFieldComponent) {
+  public updateSigPreview(idx: number, data: string) {
+    this.result[idx] = data;
+  }
+
+  public size(sig: SignatureFieldComponent) {
     sig.signaturePad.set('canvasWidth', sig.nativeElement.clientWidth - 40);
     sig.signaturePad.set('canvasHeight', sig.nativeElement.clientHeight);
-    sig.signaturePad.clear();
   }
 
   public submit() {

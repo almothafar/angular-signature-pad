@@ -4,19 +4,20 @@
 
 <form [formGroup]="form" (submit)="submit()">
   <div class="row">
-    <button type="button" (click)="clear()" [disabled]="!form.valid">Clear All</button>
-    <button type="submit">Submit</button>
+    <button type="button" (click)="clear()">Clear All</button>
     <button type="submit" [disabled]="!form.valid">Submit</button>
   </div>
   @for (item of items; track item; let idx = $index) {
     <div class="sig-container">
       <h3>{{ titles[idx] }}</h3>
       <div class="row">
+        <button type="button" (click)="sigs.get(idx).randomBackgroundColor()">Change Background</button>
         <button type="button" (click)="sigs.get(idx).clear()" [disabled]="!form.controls['signatureField'+idx].valid">Clear</button>
       </div>
       <div class="row" #sigContainer>
         <div class="col">
-          <app-signature-field [options]="item.options" [imageType]="item.imageType" [quality]="item.quality" [formControlName]="'signatureField'+idx"></app-signature-field>
+          <app-signature-field [options]="item.options" [imageType]="item.imageType" [quality]="item.quality" [formControlName]="'signatureField'+idx"
+                               (signatureChanged)="updateSigPreview(idx, $event)"></app-signature-field>
         </div>
         <div class="col">
           <app-signature-view [signature]="result?.at(idx)"></app-signature-view>

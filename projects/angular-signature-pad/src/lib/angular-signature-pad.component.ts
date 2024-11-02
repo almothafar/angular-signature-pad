@@ -34,7 +34,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   public ngAfterContentInit(): void {
     const canvas: HTMLCanvasElement = this.initCanvas(this.options);
     this.initSignaturePad(canvas, this.options);
-    this.clear();
+    this.redrawCanvas();
   }
 
   public ngOnDestroy(): void {
@@ -56,7 +56,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   /**
    * Redraw or Resize canvas, note this will clear data.
    */
-  public redrawCanvas(clearData: boolean = false): void {
+  public redrawCanvas(): void {
     const canvas: HTMLCanvasElement = this.getCanvas();
     // when zoomed out to less than 100%, for some very strange reason,
     // some browsers report devicePixelRatio as less than 1, and only part of the canvas is cleared then.
@@ -64,9 +64,6 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     canvas.width = this._getWidthFix(canvas) * ratio;
     canvas.height = this._getHeightFix(canvas) * ratio;
     canvas.getContext('2d').scale(ratio, ratio);
-    if (clearData) {
-      this.signaturePad.clear();
-    }
     this.changeBackgroundColor(this.signaturePad.backgroundColor);
   }
 
@@ -128,10 +125,14 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   /**
    * Clears the canvas
    */
-  public clear(): void {
-    this.signaturePad.clear();
+  public clear(redraw: boolean = true): void {
+    if (redraw) {
+      this.signaturePad.clear();
+      this.redrawCanvas();
+    } else {
+      this.signaturePad.clear();
+    }
     this.endStroke(null);
-    this.redrawCanvas();
   }
 
   // noinspection JSUnusedGlobalSymbols
