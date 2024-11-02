@@ -13,17 +13,17 @@ export class AppComponent implements AfterViewInit {
       options: {backgroundColor: 'rgb(255,255,255)'},
     },
     {
-      options: {canvasBackground: 'rgb(255, 255, 255) url(/assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 0, 0)'},
+      options: {canvasBackground: 'rgb(255, 255, 255) url(assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 0, 0)'},
       quality: 0.5,
       imageType: 'image/jpeg',
     },
     {
-      options: {canvasBackground: 'rgb(0, 0, 255) url(/assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 255, 0)'},
+      options: {canvasBackground: 'rgb(0, 0, 255) url(assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 255, 0)'},
       quality: 0.8,
       imageType: 'image/jpeg',
     },
     {
-      options: {canvasBackground: 'url(/assets/sign-here.png) bottom left no-repeat, center / cover url(/assets/cat-sig.png)', canvasHeight: 400}
+      options: {canvasBackground: 'url(assets/sign-here.png) bottom left no-repeat, center / cover url(assets/cat-sig.png)', canvasHeight: 400}
     }
   ];
   public titles: string[] = [

@@ -16,8 +16,8 @@ npm install @almothafar/angular-signature-pad --save
 
 ## Reference Implementation
 
-* [Live Demo](http://lathonez.com/angular2-signaturepad-demo/)
-* [Source](https://github.com/lathonez/angular2-signaturepad-demo)
+* [Live Demo](https://almothafar.github.io/angular-signature-pad/)
+* [Source](https://github.com/almothafar/angular-signature-pad/tree/master/projects/demo)
 
 ## Usage example
 
