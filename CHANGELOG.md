@@ -1,5 +1,14 @@
 ## Changelog
 
+## 8.0.0
+
+- **BREAKING** Upgraded to Angular 20 LTS with full compatibility (Minimum peer dependency remains Angular 19.0.0+).
+- Update to TypeScript 5.9.x for improved type safety and performance.
+- Modernized dependency injection using `inject()` function throughout codebase.
+- All demo components fully migrated to standalone architecture.
+- Updated build tooling to Angular 20 ecosystem.
+- Code quality improvements and cleanup.
+
 ## 7.0.0
 
 - **BREAKING** Support Angular 19+ dropping support for Angular 18 and below (Minimum peer dependency is now Angular 19.0.0).

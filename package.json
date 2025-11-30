@@ -1,6 +1,6 @@
 {
   "name": "@almothafar/angular-signature-pad",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng build angular-signature-pad --watch",
@@ -15,30 +15,30 @@
     "copyExtra": "node -e \"require('fs').copyFileSync('README.md', './dist/README.md');require('fs').copyFileSync('CHANGELOG.md', './dist/CHANGELOG.md');\""
   },
   "dependencies": {
-    "@angular/animations": "^19.2.16",
-    "@angular/common": "^19.2.16",
-    "@angular/compiler": "^19.2.16",
-    "@angular/core": "^19.2.16",
-    "@angular/forms": "^19.2.16",
-    "@angular/platform-browser": "^19.2.16",
-    "@angular/platform-browser-dynamic": "^19.2.16",
-    "@angular/router": "19.2.16",
-    "rxjs": "~7.8.2",
+    "@angular/animations": "v20-lts",
+    "@angular/common": "v20-lts",
+    "@angular/compiler": "v20-lts",
+    "@angular/core": "v20-lts",
+    "@angular/forms": "v20-lts",
+    "@angular/platform-browser": "v20-lts",
+    "@angular/platform-browser-dynamic": "v20-lts",
+    "@angular/router": "v20-lts",
+    "rxjs": "^7.8.2",
     "signature_pad": "^5.1.2",
     "tslib": "^2.8.1",
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.19",
-    "@angular-eslint/builder": "^19.8.1",
-    "@angular-eslint/eslint-plugin": "^19.8.1",
-    "@angular-eslint/eslint-plugin-template": "^19.8.1",
-    "@angular-eslint/schematics": "^19.8.1",
-    "@angular-eslint/template-parser": "^19.8.1",
-    "@angular/cli": "^19.2.19",
-    "@angular/compiler-cli": "^19.2.16",
+    "@angular-eslint/builder": "^20.7.0",
+    "@angular-eslint/eslint-plugin": "^20.7.0",
+    "@angular-eslint/eslint-plugin-template": "^20.7.0",
+    "@angular-eslint/schematics": "^20.7.0",
+    "@angular-eslint/template-parser": "^20.7.0",
+    "@angular/build": "v20-lts",
+    "@angular/cli": "v20-lts",
+    "@angular/compiler-cli": "v20-lts",
     "@types/jasmine": "~5.1.13",
-    "@types/node": "^22.19.1",
+    "@types/node": "^24.10.1",
     "@typescript-eslint/eslint-plugin": "^8.48.0",
     "@typescript-eslint/parser": "^8.48.0",
     "eslint": "^9.39.1",
@@ -52,8 +52,8 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
-    "ng-packagr": "^19.2.2",
+    "ng-packagr": "^20.3.2",
     "rimraf": "~6.1.2",
-    "typescript": "~5.8.3"
+    "typescript": "~5.9.3"
   }
 }

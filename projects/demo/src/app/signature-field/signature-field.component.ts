@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, inject, Input, Output, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {SignaturePadComponent} from 'angular-signature-pad';
 import {NgSignaturePadOptions} from "projects/angular-signature-pad/src/lib/angular-signature-pad.component";
@@ -32,6 +32,7 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
 
   @Output() public signatureChanged: EventEmitter<string> = new EventEmitter<string>();
 
+  private _elementRef = inject(ElementRef);
   public nativeElement: HTMLElement;
 
   private _signature: string;
@@ -49,7 +50,7 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
     this.onChange(this.signature);
   }
 
-  constructor(private _elementRef: ElementRef) {
+  constructor() {
     this.nativeElement = this._elementRef.nativeElement;
   }
 

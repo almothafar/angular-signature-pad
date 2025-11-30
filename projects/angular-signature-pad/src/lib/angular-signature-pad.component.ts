@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
+import {AfterContentInit, Component, ElementRef, EventEmitter, inject, Input, OnDestroy, Output} from '@angular/core';
 import SignaturePad, {Options, PointGroup} from 'signature_pad';
 
 export interface NgSignaturePadOptions extends Options {
@@ -21,10 +21,10 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   @Output() public drawAfterUpdate: EventEmitter<MouseEvent | Touch>;
   @Output() public drawEnd: EventEmitter<MouseEvent | Touch>;
 
+  private _elementRef = inject(ElementRef);
   private signaturePad: SignaturePad;
-  private extraWidth: number;
 
-  constructor(private _elementRef: ElementRef) {
+  constructor() {
     this.options = this.options || {} as NgSignaturePadOptions;
     this.drawStart = new EventEmitter<MouseEvent | Touch>();
     this.drawBeforeUpdate = new EventEmitter<MouseEvent | Touch>();
@@ -252,7 +252,6 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
 
     const extraPadding = parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
     const extraBorder = parseFloat(computedStyle.borderLeftWidth) + parseFloat(computedStyle.borderRightWidth);
-    this.extraWidth = extraPadding + extraBorder;
     return canvas.offsetWidth - (extraPadding + extraBorder);
   }
 

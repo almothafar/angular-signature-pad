@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, QueryList, ViewChildren} from '@angular/core';
+import {Component, ElementRef, inject, QueryList, ViewChildren} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SignatureFieldComponent, SignatureFieldConfig} from './signature-field/signature-field.component';
 import {SignatureViewComponent} from './signature-view/signature-view.component';
@@ -10,7 +10,7 @@ import {SignatureViewComponent} from './signature-view/signature-view.component'
   standalone: true,
   imports: [ReactiveFormsModule, SignatureFieldComponent, SignatureViewComponent]
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   public items: SignatureFieldConfig[] = [
     {
       options: {backgroundColor: 'rgb(255,255,255)', canvasWidth: 300, canvasHeight: 150},
@@ -36,24 +36,18 @@ export class AppComponent implements AfterViewInit {
     'With image as background'
   ];
 
+  private fb = inject(FormBuilder);
   public form: FormGroup;
   public result: string[] = [];
 
   @ViewChildren(SignatureFieldComponent) public sigs: QueryList<SignatureFieldComponent>;
   @ViewChildren('sigContainer') public sigContainer: QueryList<ElementRef>;
 
-  constructor(fb: FormBuilder) {
+  constructor() {
     const controls = [...Array(this.items.length)].map((value, index) => {
       return {[`signatureField${index}`]: ['', Validators.required]};
     });
-    this.form = fb.group(Object.assign({}, ...controls));
-  }
-
-  public ngAfterViewInit() {
-    // Canvas dimensions are now set via options in the items array
-    // this.sigs.forEach((signature, index) => {
-    //   this.size(signature);
-    // });
+    this.form = this.fb.group(Object.assign({}, ...controls));
   }
 
   public updateSigPreview(idx: number, data: string) {
