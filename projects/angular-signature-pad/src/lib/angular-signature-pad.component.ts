@@ -61,8 +61,23 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     // when zoomed out to less than 100%, for some very strange reason,
     // some browsers report devicePixelRatio as less than 1, and only part of the canvas is cleared then.
     const ratio: number = Math.max(window.devicePixelRatio || 1, 1);
-    canvas.width = this._getWidthFix(canvas) * ratio;
-    canvas.height = this._getHeightFix(canvas) * ratio;
+
+    // Use explicit dimensions from options if provided, otherwise calculate from DOM
+    const baseWidth = this.options.canvasWidth
+      ? this.options.canvasWidth - 2
+      : this._getWidthFix(canvas);
+    const baseHeight = this.options.canvasHeight
+      ? this.options.canvasHeight - 2
+      : this._getHeightFix(canvas);
+
+    // Set internal canvas size (scaled for high DPI)
+    canvas.width = baseWidth * ratio;
+    canvas.height = baseHeight * ratio;
+
+    // Set CSS size to match the base dimensions (without ratio scaling)
+    canvas.style.width = baseWidth + 'px';
+    canvas.style.height = baseHeight + 'px';
+
     canvas.getContext('2d').scale(ratio, ratio);
     this.changeBackgroundColor(this.signaturePad.backgroundColor);
   }
@@ -165,13 +180,13 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
    */
   public set(option: string, value: any): void {
     if (option === 'canvasHeight' || option === 'canvasWidth') {
-      const canvas: HTMLCanvasElement = this.getCanvas();
-      const canvasOption = option.replace('canvas', '').toLowerCase();
-      if (canvas[canvasOption] === value) {
+      // Check if the value is the same in options
+      if (this.options[option] === value) {
         // Same value, no need to change and redraw
         return;
       }
-      canvas[canvasOption] = value - this.extraWidth;
+      // Update the options so redrawCanvas will use the new value
+      this.options[option] = value;
       this.clear();
     } else {
       if (this.signaturePad[option] === value) {
