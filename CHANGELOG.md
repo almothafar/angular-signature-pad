@@ -1,5 +1,11 @@
 ## Changelog
 
+## 6.0.1
+
+- Possible fix for #12
+- Update dependencies with minor and patch updates
+- Fix the demo project for responsiveness
+
 ## 6.0.0
 
 - **BREAKING** `redrawCanvas()` does not auto-clear data anymore; clear will be called internally, but still preserving data. You can return to the previous behavior by calling `clear()` after `redrawCanvas()` if you want it.
