@@ -8,7 +8,7 @@ describe('AngularSignaturePadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SignaturePadComponent],
+      imports: [SignaturePadComponent],
     }).compileComponents();
   });
 

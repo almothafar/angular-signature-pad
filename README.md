@@ -4,9 +4,12 @@
 [![npm version](https://img.shields.io/npm/v/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
 [![npm license](https://img.shields.io/npm/l/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
 [![GitHub issues](https://img.shields.io/github/issues/almothafar/angular-signature-pad.svg)](https://github.com/almothafar/angular-signature-pad/issues)
+[![Angular 20](https://img.shields.io/badge/Angular-20-DD0031?logo=angular)](https://angular.io/)
 
 
 Angular component for [szimek/signature_pad](https://www.npmjs.com/package/signature_pad).
+
+**✨ Now supports Angular 20!** Built with standalone components and modern Angular best practices.
 
 ## Install
 

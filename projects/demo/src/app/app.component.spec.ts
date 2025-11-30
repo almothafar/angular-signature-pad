@@ -14,16 +14,15 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'demo' title`, () => {
+  it('should have signature field items', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('demo');
+    expect(app.items.length).toBeGreaterThan(0);
   });
 
-  it('should render title', () => {
+  it('should have titles array', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, demo');
+    const app = fixture.componentInstance;
+    expect(app.titles.length).toEqual(app.items.length);
   });
 });
