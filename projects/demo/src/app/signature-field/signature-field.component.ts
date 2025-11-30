@@ -20,6 +20,8 @@ export type SignatureFieldConfig = {
       multi: true,
     },
   ],
+  standalone: true,
+  imports: [SignaturePadComponent]
 })
 export class SignatureFieldComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild(SignaturePadComponent) public signaturePad: SignaturePadComponent;

@@ -1,11 +1,14 @@
 import {AfterViewInit, Component, ElementRef, QueryList, ViewChildren} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SignatureFieldComponent, SignatureFieldConfig} from './signature-field/signature-field.component';
+import {SignatureViewComponent} from './signature-view/signature-view.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  standalone: true,
+  imports: [ReactiveFormsModule, SignatureFieldComponent, SignatureViewComponent]
 })
 export class AppComponent implements AfterViewInit {
   public items: SignatureFieldConfig[] = [

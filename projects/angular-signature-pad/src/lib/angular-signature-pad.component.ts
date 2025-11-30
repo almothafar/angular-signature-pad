@@ -11,6 +11,7 @@ export interface NgSignaturePadOptions extends Options {
   template: '<canvas class="signature-pad-canvas"></canvas>',
   selector: 'signature-pad',
   styleUrls: ['./angular-signature-pad.component.scss'],
+  standalone: true
 })
 export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   @Input() public options: NgSignaturePadOptions;

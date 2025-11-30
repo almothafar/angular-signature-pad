@@ -31,43 +31,25 @@ Options are as per [szimek/signature_pad](https://www.npmjs.com/package/signatur
 The above options are provided to avoid accessing the DOM directly from your component to adjust the canvas size.
 
 ```typescript
-
-// import into app module
-
-import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
-
-...
-
-@NgModule({
-  declarations: [ ],
-  imports: [ AngularSignaturePadModule ],
-  providers: [ ],
-  bootstrap: [ AppComponent ]
-})
-
-// then import for use in a component
-
 import { Component, ViewChild } from '@angular/core';
-import { SignaturePadComponent } from '@almothafar/angular-signature-pad';
+import { SignaturePadComponent, NgSignaturePadOptions } from '@almothafar/angular-signature-pad';
 
 @Component({
+  selector: 'app-signature',
+  standalone: true,
+  imports: [SignaturePadComponent],
   template: '<signature-pad #signature [options]="signaturePadOptions" (drawStart)="drawStart($event)" (drawEnd)="drawComplete($event)"></signature-pad>'
 })
-
 export class SignaturePadPage {
 
   @ViewChild('signature')
   public signaturePad: SignaturePadComponent;
 
-  private signaturePadOptions: NgSignaturePadOptions = { // passed through to szimek/signature_pad constructor
+  public signaturePadOptions: NgSignaturePadOptions = { // passed through to szimek/signature_pad constructor
     minWidth: 5,
     canvasWidth: 500,
     canvasHeight: 300
   };
-
-  constructor() {
-    // no-op
-  }
 
   ngAfterViewInit() {
     // this.signaturePad is now available
@@ -86,4 +68,36 @@ export class SignaturePadPage {
     console.log('Start drawing', event);
   }
 }
+```
+
+### Migration from v6.x to v7.x
+
+In v7.x, the component is now standalone. Update your imports:
+
+**Before (v6.x):**
+```typescript
+import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
+
+@NgModule({
+  imports: [AngularSignaturePadModule]
+})
+```
+
+**After (v7.x):**
+```typescript
+import { SignaturePadComponent } from '@almothafar/angular-signature-pad';
+
+@Component({
+  standalone: true,
+  imports: [SignaturePadComponent]
+})
+```
+
+Or if you're still using NgModule:
+```typescript
+import { SignaturePadComponent } from '@almothafar/angular-signature-pad';
+
+@NgModule({
+  imports: [SignaturePadComponent]
+})
 ```
