@@ -10,20 +10,20 @@ import {SignatureFieldComponent, SignatureFieldConfig} from './signature-field/s
 export class AppComponent implements AfterViewInit {
   public items: SignatureFieldConfig[] = [
     {
-      options: {backgroundColor: 'rgb(255,255,255)'},
+      options: {backgroundColor: 'rgb(255,255,255)', canvasWidth: 300, canvasHeight: 150},
     },
     {
-      options: {canvasBackground: 'rgb(255, 255, 255) url(assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 0, 0)'},
+      options: {canvasBackground: 'rgb(255, 255, 255) url(assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 0, 0)', canvasWidth: 300, canvasHeight: 150},
       quality: 0.5,
       imageType: 'image/jpeg',
     },
     {
-      options: {canvasBackground: 'rgb(0, 0, 255) url(assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 255, 0)'},
+      options: {canvasBackground: 'rgb(0, 0, 255) url(assets/sign-here.png) bottom left no-repeat', penColor: 'rgb(255, 255, 0)', canvasWidth: 300, canvasHeight: 150},
       quality: 0.8,
       imageType: 'image/jpeg',
     },
     {
-      options: {canvasBackground: 'url(assets/sign-here.png) bottom left no-repeat, center / cover url(assets/cat-sig.png)', canvasHeight: 400}
+      options: {canvasBackground: 'url(assets/sign-here.png) bottom left no-repeat, center / cover url(assets/cat-sig.png)', canvasWidth: 400, canvasHeight: 400}
     }
   ];
   public titles: string[] = [
@@ -47,9 +47,10 @@ export class AppComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    this.sigs.forEach((signature, index) => {
-      this.size(signature);
-    });
+    // Canvas dimensions are now set via options in the items array
+    // this.sigs.forEach((signature, index) => {
+    //   this.size(signature);
+    // });
   }
 
   public updateSigPreview(idx: number, data: string) {
