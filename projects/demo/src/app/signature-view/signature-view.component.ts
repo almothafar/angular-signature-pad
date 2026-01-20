@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, Input} from '@angular/core';
+import {Component, ElementRef, inject, input} from '@angular/core';
 
 
 @Component({
@@ -8,7 +8,7 @@ import {Component, ElementRef, inject, Input} from '@angular/core';
   standalone: true
 })
 export class SignatureViewComponent {
-  @Input() signature: string;
+  readonly signature = input<string>(undefined);
 
   private _elementRef = inject(ElementRef);
   public nativeElement: HTMLElement;
