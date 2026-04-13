@@ -24,7 +24,7 @@ export type SignatureFieldConfig = {
   imports: [SignaturePadComponent]
 })
 export class SignatureFieldComponent implements ControlValueAccessor, AfterViewInit {
-  public readonly signaturePad = viewChild(SignaturePadComponent);
+  public readonly signaturePad = viewChild.required(SignaturePadComponent);
 
   readonly options = input<NgSignaturePadOptions>(undefined);
   readonly quality = input<number>(undefined);
@@ -36,8 +36,8 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
   public nativeElement: HTMLElement;
 
   private _signature: string;
-  private onChange: (value: string) => void;
-  private onTouched: () => void;
+  private onChange: (value: string) => void = () => {};
+  private onTouched: () => void = () => {};
 
   get signature(): string {
     return this._signature;
