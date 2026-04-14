@@ -13,6 +13,8 @@
 - Upgrade `zone.js` to `~0.16.0`.
 - Update build tooling to Angular 21 ecosystem.
 
+Thanks to [@lekhmanrus](https://github.com/lekhmanrus) for [feat: support angular 21 (#16)](https://github.com/almothafar/angular-signature-pad/pull/16).
+
 ## 8.0.0
 
 - **BREAKING** Upgraded to Angular 20 LTS with full compatibility (Minimum peer dependency remains Angular 19.0.0+).
