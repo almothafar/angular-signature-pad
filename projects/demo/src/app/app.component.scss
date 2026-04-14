@@ -1,52 +1,158 @@
 $base-width: 850px;
+$primary: #3b5bdb;
+$danger: #e03131;
+$secondary: #495057;
+$radius: 8px;
 
-form {
-  padding-top: 20px;
-  margin: 0 auto;
-  max-width: $base-width + 100;
+@mixin btn($bg, $color: #fff) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border: none;
+  border-radius: 6px;
+  background: $bg;
+  color: $color;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: filter 0.15s, opacity 0.15s;
 
-  h3 {
-    margin: 10px 5px 0;
+  &:hover:not(:disabled) {
+    filter: brightness(1.1);
   }
 
-  button {
-    margin: 5px;
+  &:active:not(:disabled) {
+    filter: brightness(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+h1 {
+  max-width: $base-width;
+  margin: 32px auto 24px;
+  font-size: 22px;
+  font-weight: 700;
+  color: $primary;
+  padding-bottom: 12px;
+  border-bottom: 2px solid $primary;
+  letter-spacing: -0.3px;
+}
+
+form {
+  margin: 0 auto;
+  max-width: $base-width;
+
+  > .row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 0 4px;
+
+    button[type="button"] { @include btn($secondary); }
+    button[type="submit"]  { @include btn($primary); }
   }
 }
 
 .sig-container {
-  margin: 10px 0;
-  border: dashed 1px black;
-  max-width: $base-width;
+  margin: 0 0 20px;
+  background: #fff;
+  border-radius: $radius;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.06);
+  overflow: hidden;
 
-  .row {
+  h3 {
+    margin: 0;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #6c757d;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  > .row:first-of-type {
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f1f3f5;
+
+    button:first-child { @include btn(#e9ecef, $secondary); }
+    button:last-child   { @include btn($danger); }
+  }
+
+  > .row:last-of-type {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
 
     .col {
-      flex-basis: calc(50% - 40px);
-      flex-grow: 1;
-      flex-shrink: 1;
-      padding: 0 10px;
+      flex: 1 1 calc(50% - 24px);
+      min-width: 240px;
+    }
 
-      @media (max-width: 768px) {
-        flex-basis: 100%;
-        margin: 10px 0;
-      }
+    @media (max-width: 640px) {
+      .col { flex-basis: 100%; }
     }
   }
 
   app-signature-field {
-    margin: 0 auto;
-    max-width: $base-width - 50;
     display: block;
   }
 }
 
-.sig-container-image {
-  height: 400px;
-  width: $base-width - 50;
+.submit-result {
+  margin: 0 0 24px;
+  border-radius: $radius;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.06);
+
+  .submit-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #d3f9d8;
+    color: #2b8a3e;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 1px solid #b2f2bb;
+
+    .submit-icon {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    kbd {
+      display: inline-block;
+      padding: 1px 6px;
+      font-size: 11px;
+      font-family: inherit;
+      background: #fff;
+      border: 1px solid #8ce99a;
+      border-radius: 4px;
+      color: #2b8a3e;
+    }
+  }
+
+  .submit-data {
+    margin: 0;
+    padding: 16px;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    font-size: 12.5px;
+    line-height: 1.6;
+    overflow-x: auto;
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  }
 }

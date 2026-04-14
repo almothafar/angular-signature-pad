@@ -5,7 +5,7 @@
 <form [formGroup]="form" (submit)="submit()">
   <div class="row">
     <button type="button" (click)="clear()">Clear All</button>
-    <button type="submit" [disabled]="!form.valid">Submit</button>
+    <button type="submit" [disabled]="!canSubmit">Submit</button>
   </div>
   @for (item of items; track item; let idx = $index) {
     <div class="sig-container">
@@ -23,6 +23,15 @@
           <app-signature-view [signature]="result?.at(idx)" />
         </div>
       </div>
+    </div>
+  }
+  @if (submitted) {
+    <div class="submit-result" #submitResult>
+      <div class="submit-banner">
+        <span class="submit-icon">✓</span>
+        <span>Submitted successfully — full data logged to browser console <kbd>F12</kbd></span>
+      </div>
+      <pre class="submit-data">{{ displayResult }}</pre>
     </div>
   }
 </form>

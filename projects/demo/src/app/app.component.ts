@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, viewChildren} from '@angular/core';
+import {Component, ElementRef, inject, viewChild, viewChildren} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SignatureFieldComponent, SignatureFieldConfig} from './signature-field/signature-field.component';
 import {SignatureViewComponent} from './signature-view/signature-view.component';
@@ -39,9 +39,26 @@ export class AppComponent {
   private fb = inject(FormBuilder);
   public form: FormGroup;
   public result: string[] = [];
+  public submitted = false;
+
+  public get canSubmit(): boolean {
+    return Object.values(this.form.value).some(v => !!v);
+  }
+
+  public get displayResult(): string {
+    return JSON.stringify(
+      this.result.map((value, i) => ({
+        field: `signatureField${i}`,
+        value: value ? `${value.substring(0, 60)}… [${value.length} chars total]` : null,
+      })),
+      null,
+      2
+    );
+  }
 
   public readonly sigs = viewChildren(SignatureFieldComponent);
   public readonly sigContainer = viewChildren<ElementRef>('sigContainer');
+  public readonly submitResult = viewChild<ElementRef>('submitResult');
 
   constructor() {
     const controls = [...Array(this.items.length)].map((value, index) => {
@@ -61,12 +78,15 @@ export class AppComponent {
 
   public submit() {
     this.result = this.sigs().map(signature => signature.signature);
+    this.submitted = true;
     console.log('CAPTURED SIGNATURES:', this.result);
+    setTimeout(() => this.submitResult()?.nativeElement?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   }
 
   public clear() {
     this.sigs().forEach((signature) => signature.signaturePad().clear());
     this.form.reset();
     this.result = [];
+    this.submitted = false;
   }
 }

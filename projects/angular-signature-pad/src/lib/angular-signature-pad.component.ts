@@ -15,10 +15,11 @@ export interface NgSignaturePadOptions extends Options {
 })
 export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   public readonly options = model<NgSignaturePadOptions>({});
-  public readonly drawStart = output<MouseEvent | Touch | null>();
-  public readonly drawBeforeUpdate = output<MouseEvent | Touch | null>();
-  public readonly drawAfterUpdate = output<MouseEvent | Touch | null>();
-  public readonly drawEnd = output<MouseEvent | Touch | null>();
+  public readonly drawStart = output<MouseEvent | Touch>();
+  public readonly drawBeforeUpdate = output<MouseEvent | Touch>();
+  public readonly drawAfterUpdate = output<MouseEvent | Touch>();
+  public readonly drawEnd = output<MouseEvent | Touch>();
+  public readonly drawClear = output<void>();
 
   private _elementRef = inject(ElementRef);
   private signaturePad!: SignaturePad;
@@ -141,7 +142,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     } else {
       this.signaturePad.clear();
     }
-    this.endStroke(null);
+    this.drawClear.emit();
   }
 
   // noinspection JSUnusedGlobalSymbols
@@ -195,22 +196,22 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   /**
    * notify subscribers on signature begin
    */
-  public beginStroke(event: MouseEvent | Touch | null): void {
+  public beginStroke(event: MouseEvent | Touch): void {
     this.drawStart.emit(event);
   }
 
-  public beforeUpdateStroke(event: MouseEvent | Touch | null): void {
+  public beforeUpdateStroke(event: MouseEvent | Touch): void {
     this.drawBeforeUpdate.emit(event);
   }
 
-  public afterUpdateStroke(event: MouseEvent | Touch | null): void {
+  public afterUpdateStroke(event: MouseEvent | Touch): void {
     this.drawAfterUpdate.emit(event);
   }
 
   /**
    * notify subscribers on signature end
    */
-  public endStroke(event: MouseEvent | Touch | null): void {
+  public endStroke(event: MouseEvent | Touch): void {
     this.drawEnd.emit(event);
   }
 

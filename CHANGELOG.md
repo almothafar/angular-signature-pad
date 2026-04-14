@@ -1,5 +1,18 @@
 ## Changelog
 
+## 9.0.0
+
+- **BREAKING** Dropped support for Angular 19 (Angular 19 LTS has ended). Minimum peer dependency is now Angular 20.0.0+.
+- **BREAKING** `clear()` no longer emits `drawEnd` with `null` (behavior introduced in 6.0.0). Use the new `drawClear` output event instead to detect when the pad is cleared.
+- Support Angular 21.
+- Migrated to Angular signal inputs (`input()`, `model()`), output functions (`output()`), and signal queries (`viewChild()`, `viewChildren()`).
+- `options` input is now a `model()` signal, enabling two-way binding with `[(options)]` syntax.
+- New `drawClear` output event — emitted when `clear()` is called, replacing the previous `drawEnd(null)` pattern.
+- `ngOnDestroy` now properly unbinds SignaturePad event listeners via `signaturePad.off()`.
+- Upgrade `signature_pad` to `^5.1.3`. See ([Changelog](https://github.com/szimek/signature_pad/blob/master/CHANGELOG.md))
+- Upgrade `zone.js` to `~0.16.0`.
+- Update build tooling to Angular 21 ecosystem.
+
 ## 8.0.0
 
 - **BREAKING** Upgraded to Angular 20 LTS with full compatibility (Minimum peer dependency remains Angular 19.0.0+).

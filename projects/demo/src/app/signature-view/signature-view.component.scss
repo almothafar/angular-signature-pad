@@ -2,11 +2,18 @@
   display: block;
 
   .preview {
-    background: #e7e6e6;
+    background: #f8f9fa;
+    border: 1px dashed #ced4da;
+    border-radius: 6px;
     min-height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    span {
+      font-size: 13px;
+      color: #adb5bd;
+    }
   }
 
   img {
@@ -14,5 +21,6 @@
     margin: 0 auto;
     max-width: 100%;
     height: auto;
+    border-radius: 4px;
   }
 }

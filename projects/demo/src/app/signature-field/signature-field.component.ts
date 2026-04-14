@@ -85,11 +85,11 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
 
   public drawComplete(data: any): void {
     console.log('Complete Drawing', data);
-    if (data) {
-      this.signature = this.signaturePad().toDataURL(this.imageType(), this.quality());
-    } else {
-      this.signature = '';
-    }
+    this.signature = this.signaturePad().toDataURL(this.imageType(), this.quality());
+  }
+
+  public drawCleared(): void {
+    this.signature = '';
   }
 
   public clear(): void {
