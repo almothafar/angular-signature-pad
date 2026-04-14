@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, QueryList, ViewChildren} from '@angular/core';
+import {Component, ElementRef, inject, viewChildren} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SignatureFieldComponent, SignatureFieldConfig} from './signature-field/signature-field.component';
 import {SignatureViewComponent} from './signature-view/signature-view.component';
@@ -40,8 +40,8 @@ export class AppComponent {
   public form: FormGroup;
   public result: string[] = [];
 
-  @ViewChildren(SignatureFieldComponent) public sigs: QueryList<SignatureFieldComponent>;
-  @ViewChildren('sigContainer') public sigContainer: QueryList<ElementRef>;
+  public readonly sigs = viewChildren(SignatureFieldComponent);
+  public readonly sigContainer = viewChildren<ElementRef>('sigContainer');
 
   constructor() {
     const controls = [...Array(this.items.length)].map((value, index) => {
@@ -55,17 +55,17 @@ export class AppComponent {
   }
 
   public size(sig: SignatureFieldComponent) {
-    sig.signaturePad.set('canvasWidth', sig.nativeElement.clientWidth - 40);
-    sig.signaturePad.set('canvasHeight', sig.nativeElement.clientHeight);
+    sig.signaturePad().set('canvasWidth', sig.nativeElement.clientWidth - 40);
+    sig.signaturePad().set('canvasHeight', sig.nativeElement.clientHeight);
   }
 
   public submit() {
-    this.result = this.sigs.map(signature => signature.signature);
+    this.result = this.sigs().map(signature => signature.signature);
     console.log('CAPTURED SIGNATURES:', this.result);
   }
 
   public clear() {
-    this.sigs.forEach((signature) => signature.signaturePad.clear());
+    this.sigs().forEach((signature) => signature.signaturePad().clear());
     this.form.reset();
     this.result = [];
   }

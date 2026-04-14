@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/almothafar/angular-signature-pad#readme",
   "peerDependencies": {
-    "@angular/common": ">=19.0.0",
-    "@angular/core": ">=19.0.0"
+    "@angular/common": "^19.0.0 || ^20.0.0 || ^21.0.0",
+    "@angular/core": "^19.0.0 || ^20.0.0 || ^21.0.0"
   },
   "dependencies": {
-    "signature_pad": "^5.1.2",
+    "signature_pad": "^5.1.3",
     "tslib": "^2.8.1"
   }
 }

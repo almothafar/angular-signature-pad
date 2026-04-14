@@ -11,16 +11,16 @@
     <div class="sig-container">
       <h3>{{ titles[idx] }}</h3>
       <div class="row">
-        <button type="button" (click)="sigs.get(idx).randomBackgroundColor()">Change Background</button>
-        <button type="button" (click)="sigs.get(idx).clear()" [disabled]="!form.controls['signatureField'+idx].valid">Clear</button>
+        <button type="button" (click)="sigs().at(idx).randomBackgroundColor()">Change Background</button>
+        <button type="button" (click)="sigs().at(idx).clear()" [disabled]="!form.controls['signatureField'+idx].valid">Clear</button>
       </div>
       <div class="row" #sigContainer>
         <div class="col">
           <app-signature-field [options]="item.options" [imageType]="item.imageType" [quality]="item.quality" [formControlName]="'signatureField'+idx"
-                               (signatureChanged)="updateSigPreview(idx, $event)"></app-signature-field>
+                               (signatureChanged)="updateSigPreview(idx, $event)" />
         </div>
         <div class="col">
-          <app-signature-view [signature]="result?.at(idx)"></app-signature-view>
+          <app-signature-view [signature]="result?.at(idx)" />
         </div>
       </div>
     </div>

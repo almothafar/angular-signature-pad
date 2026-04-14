@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ElementRef, EventEmitter, inject, Input, OnDestroy, Output} from '@angular/core';
+import {AfterContentInit, Component, ElementRef, inject, model, OnDestroy, output} from '@angular/core';
 import SignaturePad, {Options, PointGroup} from 'signature_pad';
 
 export interface NgSignaturePadOptions extends Options {
@@ -14,34 +14,25 @@ export interface NgSignaturePadOptions extends Options {
   standalone: true
 })
 export class SignaturePadComponent implements AfterContentInit, OnDestroy {
-  @Input() public options: NgSignaturePadOptions;
-
-  @Output() public drawStart: EventEmitter<MouseEvent | Touch>;
-  @Output() public drawBeforeUpdate: EventEmitter<MouseEvent | Touch>;
-  @Output() public drawAfterUpdate: EventEmitter<MouseEvent | Touch>;
-  @Output() public drawEnd: EventEmitter<MouseEvent | Touch>;
+  public readonly options = model<NgSignaturePadOptions>({});
+  public readonly drawStart = output<MouseEvent | Touch | null>();
+  public readonly drawBeforeUpdate = output<MouseEvent | Touch | null>();
+  public readonly drawAfterUpdate = output<MouseEvent | Touch | null>();
+  public readonly drawEnd = output<MouseEvent | Touch | null>();
 
   private _elementRef = inject(ElementRef);
-  private signaturePad: SignaturePad;
-
-  constructor() {
-    this.options = this.options || {} as NgSignaturePadOptions;
-    this.drawStart = new EventEmitter<MouseEvent | Touch>();
-    this.drawBeforeUpdate = new EventEmitter<MouseEvent | Touch>();
-    this.drawAfterUpdate = new EventEmitter<MouseEvent | Touch>();
-    this.drawEnd = new EventEmitter<MouseEvent | Touch>();
-  }
+  private signaturePad!: SignaturePad;
 
   public ngAfterContentInit(): void {
-    const canvas: HTMLCanvasElement = this.initCanvas(this.options);
-    this.initSignaturePad(canvas, this.options);
+    const canvas: HTMLCanvasElement = this.initCanvas(this.options());
+    this.initSignaturePad(canvas, this.options());
     this.redrawCanvas();
   }
 
   public ngOnDestroy(): void {
-    const canvas: HTMLCanvasElement = this.getCanvas();
-    canvas.width = 0;
-    canvas.height = 0;
+    if (this.signaturePad) {
+      this.signaturePad.off();
+    }
   }
 
   // noinspection JSUnusedGlobalSymbols
@@ -64,11 +55,12 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     const ratio: number = Math.max(window.devicePixelRatio || 1, 1);
 
     // Use explicit dimensions from options if provided, otherwise calculate from DOM
-    const baseWidth = this.options.canvasWidth
-      ? this.options.canvasWidth - 2
+    const options = this.options();
+    const baseWidth = options.canvasWidth
+      ? options.canvasWidth - 2
       : this._getWidthFix(canvas);
-    const baseHeight = this.options.canvasHeight
-      ? this.options.canvasHeight - 2
+    const baseHeight = options.canvasHeight
+      ? options.canvasHeight - 2
       : this._getHeightFix(canvas);
 
     // Set internal canvas size (scaled for high DPI)
@@ -79,7 +71,7 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     canvas.style.width = baseWidth + 'px';
     canvas.style.height = baseHeight + 'px';
 
-    canvas.getContext('2d').scale(ratio, ratio);
+    canvas.getContext('2d')?.scale(ratio, ratio);
     this.changeBackgroundColor(this.signaturePad.backgroundColor);
   }
 
@@ -128,11 +120,12 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
    */
   public fromDataURL(dataURL: string, options: { ratio?: number; width?: number; height?: number } = {}): Promise<void> {
     // set default height and width on read data from URL
-    if (!options.hasOwnProperty('height') && this.options.canvasHeight) {
-      options.height = this.options.canvasHeight;
+    const optionsValue = this.options();
+    if (!options.hasOwnProperty('height') && optionsValue.canvasHeight) {
+      options.height = optionsValue.canvasHeight;
     }
-    if (!options.hasOwnProperty('width') && this.options.canvasWidth) {
-      options.width = this.options.canvasWidth;
+    if (!options.hasOwnProperty('width') && optionsValue.canvasWidth) {
+      options.width = optionsValue.canvasWidth;
     }
     return this.signaturePad.fromDataURL(dataURL, options);
   }
@@ -182,53 +175,54 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   public set(option: string, value: any): void {
     if (option === 'canvasHeight' || option === 'canvasWidth') {
       // Check if the value is the same in options
-      if (this.options[option] === value) {
+      if (this.options()[option as keyof NgSignaturePadOptions] === value) {
         // Same value, no need to change and redraw
         return;
       }
-      // Update the options so redrawCanvas will use the new value
-      this.options[option] = value;
+      // Update the signal so redrawCanvas will use the new value
+      this.options.update(o => ({...o, [option]: value}));
       this.clear();
     } else {
-      if (this.signaturePad[option] === value) {
+      const pad = this.signaturePad as unknown as Record<string, any>;
+      if (pad[option] === value) {
         // Same value, no need to change and redraw
         return;
       }
-      this.signaturePad[option] = value;
+      pad[option] = value;
     }
   }
 
   /**
    * notify subscribers on signature begin
    */
-  public beginStroke(event: MouseEvent | Touch): void {
+  public beginStroke(event: MouseEvent | Touch | null): void {
     this.drawStart.emit(event);
   }
 
-  public beforeUpdateStroke(event: MouseEvent | Touch): void {
+  public beforeUpdateStroke(event: MouseEvent | Touch | null): void {
     this.drawBeforeUpdate.emit(event);
   }
 
-  public afterUpdateStroke(event: MouseEvent | Touch): void {
+  public afterUpdateStroke(event: MouseEvent | Touch | null): void {
     this.drawAfterUpdate.emit(event);
   }
 
   /**
    * notify subscribers on signature end
    */
-  public endStroke(event: MouseEvent | Touch): void {
+  public endStroke(event: MouseEvent | Touch | null): void {
     this.drawEnd.emit(event);
   }
 
   private initCanvas(options: NgSignaturePadOptions): HTMLCanvasElement {
     const canvas: HTMLCanvasElement = this.getCanvas();
-    if (this.options.canvasHeight) {
+    if (options.canvasHeight) {
       canvas.height = options.canvasHeight - 2;
     }
-    if (this.options.canvasWidth) {
+    if (options.canvasWidth) {
       canvas.width = options.canvasWidth - 2;
     }
-    if (this.options.canvasBackground) {
+    if (options.canvasBackground) {
       canvas.style.background = options.canvasBackground;
     }
     return canvas;
@@ -236,10 +230,10 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
 
   private initSignaturePad(canvas: HTMLCanvasElement, options?: Options): void {
     this.signaturePad = new SignaturePad(canvas, options);
-    this.signaturePad.addEventListener('beginStroke', (event: CustomEvent) => this.beginStroke(event.detail));
-    this.signaturePad.addEventListener('beforeUpdateStroke', (event: CustomEvent) => this.beforeUpdateStroke(event.detail));
-    this.signaturePad.addEventListener('afterUpdateStroke', (event: CustomEvent) => this.afterUpdateStroke(event.detail));
-    this.signaturePad.addEventListener('endStroke', (event: CustomEvent) => this.endStroke(event.detail));
+    this.signaturePad.addEventListener('beginStroke', (event: Event) => this.beginStroke((event as CustomEvent).detail));
+    this.signaturePad.addEventListener('beforeUpdateStroke', (event: Event) => this.beforeUpdateStroke((event as CustomEvent).detail));
+    this.signaturePad.addEventListener('afterUpdateStroke', (event: Event) => this.afterUpdateStroke((event as CustomEvent).detail));
+    this.signaturePad.addEventListener('endStroke', (event: Event) => this.endStroke((event as CustomEvent).detail));
   }
 
   /**

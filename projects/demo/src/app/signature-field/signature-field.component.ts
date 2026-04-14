@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, inject, Input, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, forwardRef, inject, input, output, viewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {SignaturePadComponent} from 'angular-signature-pad';
 import {NgSignaturePadOptions} from "projects/angular-signature-pad/src/lib/angular-signature-pad.component";
@@ -24,20 +24,20 @@ export type SignatureFieldConfig = {
   imports: [SignaturePadComponent]
 })
 export class SignatureFieldComponent implements ControlValueAccessor, AfterViewInit {
-  @ViewChild(SignaturePadComponent) public signaturePad: SignaturePadComponent;
+  public readonly signaturePad = viewChild.required(SignaturePadComponent);
 
-  @Input() options: NgSignaturePadOptions;
-  @Input() quality: number;
-  @Input() imageType: string;
+  readonly options = input<NgSignaturePadOptions>(undefined);
+  readonly quality = input<number>(undefined);
+  readonly imageType = input<string>(undefined);
 
-  @Output() public signatureChanged: EventEmitter<string> = new EventEmitter<string>();
+  public readonly signatureChanged = output<string>();
 
   private _elementRef = inject(ElementRef);
   public nativeElement: HTMLElement;
 
   private _signature: string;
-  private onChange: (value: string) => void;
-  private onTouched: () => void;
+  private onChange: (value: string) => void = () => {};
+  private onTouched: () => void = () => {};
 
   get signature(): string {
     return this._signature;
@@ -55,7 +55,7 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
   }
 
   public ngAfterViewInit(): void {
-    this.signaturePad.clear();
+    this.signaturePad().clear();
   }
 
   public randomBackgroundColor() {
@@ -63,7 +63,7 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
     const g = Math.round(Math.random() * 255);
     const b = Math.round(Math.random() * 255);
 
-    this.signaturePad.changeBackgroundColor(`rgb(${r},${g},${b})`);
+    this.signaturePad().changeBackgroundColor(`rgb(${r},${g},${b})`);
   }
 
   public writeValue(value: string): void {
@@ -86,21 +86,22 @@ export class SignatureFieldComponent implements ControlValueAccessor, AfterViewI
   public drawComplete(data: any): void {
     console.log('Complete Drawing', data);
     if (data) {
-      this.signature = this.signaturePad.toDataURL(this.imageType, this.quality);
+      this.signature = this.signaturePad().toDataURL(this.imageType(), this.quality());
     } else {
       this.signature = '';
     }
   }
 
   public clear(): void {
-    this.signaturePad.clear();
+    this.signaturePad().clear();
     this.signature = '';
   }
 
   private _updateSignaturePadData(value: string) {
-    if (this.signaturePad && value) {
-      this.signaturePad.fromDataURL(value);
-      console.log('Signature data :', this.signaturePad.toData());
+    const signaturePad = this.signaturePad();
+    if (signaturePad && value) {
+      signaturePad.fromDataURL(value);
+      console.log('Signature data :', signaturePad.toData());
     }
   }
 }
