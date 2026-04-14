@@ -4,12 +4,12 @@
 [![npm version](https://img.shields.io/npm/v/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
 [![npm license](https://img.shields.io/npm/l/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
 [![GitHub issues](https://img.shields.io/github/issues/almothafar/angular-signature-pad.svg)](https://github.com/almothafar/angular-signature-pad/issues)
-[![Angular 20](https://img.shields.io/badge/Angular-20-DD0031?logo=angular)](https://angular.io/)
+[![Angular 21](https://img.shields.io/badge/Angular-21-DD0031?logo=angular)](https://angular.io/)
 
 
 Angular component for [szimek/signature_pad](https://www.npmjs.com/package/signature_pad).
 
-**✨ Now supports Angular 20!** Built with standalone components and modern Angular best practices.
+**✨ Now supports Angular 21!** Built with standalone components and modern Angular signal APIs.
 
 ## Install
 
@@ -34,19 +34,24 @@ Options are as per [szimek/signature_pad](https://www.npmjs.com/package/signatur
 The above options are provided to avoid accessing the DOM directly from your component to adjust the canvas size.
 
 ```typescript
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { SignaturePadComponent, NgSignaturePadOptions } from '@almothafar/angular-signature-pad';
 
 @Component({
   selector: 'app-signature',
   standalone: true,
   imports: [SignaturePadComponent],
-  template: '<signature-pad #signature [options]="signaturePadOptions" (drawStart)="drawStart($event)" (drawEnd)="drawComplete($event)"></signature-pad>'
+  template: `
+    <signature-pad
+      [options]="signaturePadOptions"
+      (drawStart)="drawStart($event)"
+      (drawEnd)="drawComplete($event)"
+      (drawClear)="drawCleared()" />
+  `
 })
 export class SignaturePadPage {
 
-  @ViewChild('signature')
-  public signaturePad: SignaturePadComponent;
+  public signaturePad = viewChild(SignaturePadComponent);
 
   public signaturePadOptions: NgSignaturePadOptions = { // passed through to szimek/signature_pad constructor
     minWidth: 5,
@@ -55,22 +60,66 @@ export class SignaturePadPage {
   };
 
   ngAfterViewInit() {
-    // this.signaturePad is now available
-    this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
-    this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
+    // this.signaturePad() is now available
+    this.signaturePad().set('minWidth', 5); // set szimek/signature_pad options at runtime
+    this.signaturePad().clear(); // invoke functions from szimek/signature_pad API
   }
 
   drawComplete(event: MouseEvent | Touch) {
     // will be notified of szimek/signature_pad's onEnd event
     console.log('Completed drawing', event);
-    console.log(this.signaturePad.toDataURL());
+    console.log(this.signaturePad().toDataURL());
   }
 
   drawStart(event: MouseEvent | Touch) {
     // will be notified of szimek/signature_pad's onBegin event
     console.log('Start drawing', event);
   }
+
+  drawCleared() {
+    // will be notified when clear() is called on the pad
+    console.log('Pad cleared');
+  }
 }
+```
+
+### Migration from v8.x to v9.x
+
+**Angular 19 dropped** — minimum peer dependency is now Angular 20.0.0+.
+
+**`drawEnd` no longer emits `null` on clear.** If you were checking for a `null` event in your `drawEnd` handler to detect when the pad was cleared, switch to the new dedicated `drawClear` output:
+
+**Before (v8.x):**
+```html
+<signature-pad (drawEnd)="onDrawEnd($event)"></signature-pad>
+```
+```typescript
+onDrawEnd(event: MouseEvent | Touch | null) {
+  if (!event) {
+    // pad was cleared
+  }
+}
+```
+
+**After (v9.x):**
+```html
+<signature-pad (drawEnd)="onDrawEnd($event)" (drawClear)="onDrawCleared()" />
+```
+```typescript
+onDrawEnd(event: MouseEvent | Touch) { }
+
+onDrawCleared() {
+  // pad was cleared
+}
+```
+
+**`options` is now a `model()` signal**, enabling optional two-way binding:
+```html
+<!-- one-way (as before) -->
+<signature-pad [options]="myOptions" />
+
+<!-- two-way (new) -->
+<signature-pad [(options)]="myOptions" />
 ```
 
 ### Migration from v6.x to v7.x
