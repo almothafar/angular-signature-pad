@@ -3,6 +3,7 @@
   "version": "10.0.0",
   "scripts": {
     "ng": "ng",
+    "postinstall": "npm run generate-build-info",
     "start": "ng build angular-signature-pad --watch",
     "prestart:demo": "npm run generate-build-info",
     "start:demo": "ng serve demo",
