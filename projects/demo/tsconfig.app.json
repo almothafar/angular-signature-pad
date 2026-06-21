@@ -12,5 +12,8 @@
   "include": [
     "src/**/*.d.ts",
     "src/environments/*.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "strictTemplates": false
+  }
 }

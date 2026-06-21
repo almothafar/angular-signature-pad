@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ElementRef, inject, model, OnDestroy, output} from '@angular/core';
+import {AfterContentInit, Component, ElementRef, inject, model, OnDestroy, output, ChangeDetectionStrategy} from '@angular/core';
 import SignaturePad, {Options, PointGroup} from 'signature_pad';
 
 export interface NgSignaturePadOptions extends Options {
@@ -11,6 +11,7 @@ export interface NgSignaturePadOptions extends Options {
   template: '<canvas class="signature-pad-canvas"></canvas>',
   selector: 'signature-pad',
   styleUrls: ['./angular-signature-pad.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class SignaturePadComponent implements AfterContentInit, OnDestroy {

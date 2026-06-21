@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, ElementRef, forwardRef, inject, input, output, viewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, forwardRef, inject, input, output, viewChild, ChangeDetectionStrategy} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {SignaturePadComponent} from 'angular-signature-pad';
-import {NgSignaturePadOptions} from "projects/angular-signature-pad/src/lib/angular-signature-pad.component";
+import {NgSignaturePadOptions, SignaturePadComponent} from 'angular-signature-pad';
 
 export type SignatureFieldConfig = {
   options: NgSignaturePadOptions;
@@ -21,21 +20,22 @@ export type SignatureFieldConfig = {
     },
   ],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SignaturePadComponent]
 })
 export class SignatureFieldComponent implements ControlValueAccessor, AfterViewInit {
   public readonly signaturePad = viewChild.required(SignaturePadComponent);
 
-  readonly options = input<NgSignaturePadOptions>(undefined);
-  readonly quality = input<number>(undefined);
-  readonly imageType = input<string>(undefined);
+  readonly options = input<NgSignaturePadOptions>();
+  readonly quality = input<number>();
+  readonly imageType = input<string>();
 
   public readonly signatureChanged = output<string>();
 
   private _elementRef = inject(ElementRef);
   public nativeElement: HTMLElement;
 
-  private _signature: string;
+  private _signature = '';
   private onChange: (value: string) => void = () => {};
   private onTouched: () => void = () => {};
 

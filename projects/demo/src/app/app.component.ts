@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, viewChild, viewChildren} from '@angular/core';
+import {Component, ElementRef, inject, viewChild, viewChildren, ChangeDetectionStrategy} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SignatureFieldComponent, SignatureFieldConfig} from './signature-field/signature-field.component';
 import {SignatureViewComponent} from './signature-view/signature-view.component';
@@ -8,6 +8,7 @@ import {SignatureViewComponent} from './signature-view/signature-view.component'
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, SignatureFieldComponent, SignatureViewComponent]
 })
 export class AppComponent {

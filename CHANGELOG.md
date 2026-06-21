@@ -1,5 +1,14 @@
 ## Changelog
 
+## 10.0.0
+
+- Support Angular 22.
+- Update to TypeScript 6.0.x (Angular 22 peer requirement).
+- Removed the `@angular/animations` dependency — deprecated in Angular 22 (in favor of `animate.enter`/`animate.leave`) and unused by this library.
+- Modernized `tsconfig`: `ES2022` target with `module: preserve`, dropped the legacy `experimentalDecorators` and `useDefineForClassFields` flags.
+- Updated build tooling to the Angular 22 ecosystem (`@angular/build`, `@angular/cli`, `ng-packagr`, `@angular-eslint`).
+- Peer dependency range unchanged (`@angular/common`/`@angular/core` `>=20.0.0`).
+
 ## 9.0.0
 
 - **BREAKING** Dropped support for Angular 19 (Angular 19 LTS has ended). Minimum peer dependency is now Angular 20.0.0+.

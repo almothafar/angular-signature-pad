@@ -4,12 +4,12 @@
 [![npm version](https://img.shields.io/npm/v/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
 [![npm license](https://img.shields.io/npm/l/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
 [![GitHub issues](https://img.shields.io/github/issues/almothafar/angular-signature-pad.svg)](https://github.com/almothafar/angular-signature-pad/issues)
-[![Angular 21](https://img.shields.io/badge/Angular-21-DD0031?logo=angular)](https://angular.io/)
+[![Angular 22](https://img.shields.io/badge/Angular-22-DD0031?logo=angular)](https://angular.io/)
 
 
 Angular component for [szimek/signature_pad](https://www.npmjs.com/package/signature_pad).
 
-**✨ Now supports Angular 21!** Built with standalone components and modern Angular signal APIs.
+**✨ Now supports Angular 22!** Built with standalone components and modern Angular signal APIs.
 
 ## Install
 
@@ -82,6 +82,10 @@ export class SignaturePadPage {
   }
 }
 ```
+
+### Migration from v9.x to v10.x
+
+**Angular 22 support.** The peer dependency range is unchanged (Angular `>=20.0.0`), so existing v9 consumers on Angular 20/21 keep working — no API changes. The library now ships from the Angular 22 toolchain and is fully zoneless-compatible. No code changes are required to upgrade.
 
 ### Migration from v8.x to v9.x
 
