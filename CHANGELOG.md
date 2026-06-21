@@ -4,10 +4,13 @@
 
 - Support Angular 22.
 - Update to TypeScript 6.0.x (Angular 22 peer requirement).
+- **Zoneless** — removed `zone.js`; the demo now bootstraps with `provideZonelessChangeDetection()`. The library itself was already zoneless-compatible (signals/outputs, no `NgZone`).
+- Switched unit testing from **Karma/Jasmine to the `@angular/build:unit-test` builder (Vitest, Chromium via Playwright)**; removed all `karma-*` / `jasmine-*` packages and `@angular/platform-browser-dynamic`.
 - Removed the `@angular/animations` dependency — deprecated in Angular 22 (in favor of `animate.enter`/`animate.leave`) and unused by this library.
-- Modernized `tsconfig`: `ES2022` target with `module: preserve`, dropped the legacy `experimentalDecorators` and `useDefineForClassFields` flags.
-- Updated build tooling to the Angular 22 ecosystem (`@angular/build`, `@angular/cli`, `ng-packagr`, `@angular-eslint`).
-- Peer dependency range unchanged (`@angular/common`/`@angular/core` `>=20.0.0`).
+- Migrated ESLint to flat config (`eslint.config.js`) and upgraded to ESLint 10.
+- Modernized `tsconfig`: `ES2022` target with `module: preserve`; removed the deprecated `baseUrl` and the legacy `useDefineForClassFields` flag.
+- Updated build tooling to the Angular 22 ecosystem (`@angular/build`, `@angular/cli`, `ng-packagr`, `@angular-eslint`); bumped `@types/node` to 26.
+- Peer dependency range unchanged (`@angular/common`/`@angular/core` `>=20.0.0`); verified backward-compatible (partial-Ivy `minVersion` 17.1.0, no v22-only runtime APIs).
 
 ## 9.0.0
 
