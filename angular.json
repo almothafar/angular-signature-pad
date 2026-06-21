@@ -18,15 +18,20 @@
           "configurations": {
             "production": {
               "tsConfig": "projects/angular-signature-pad/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/angular-signature-pad/tsconfig.lib.json"
             }
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "projects/angular-signature-pad/src/test.ts",
             "tsConfig": "projects/angular-signature-pad/tsconfig.spec.json",
-            "karmaConfig": "projects/angular-signature-pad/karma.conf.js"
+            "runner": "vitest",
+            "browsers": ["chromium"],
+            "headless": true,
+            "providersFile": "projects/angular-signature-pad/src/test-providers.ts"
           }
         },
         "lint": {
@@ -61,9 +66,6 @@
             "baseHref": "/angular-signature-pad/",
             "index": "projects/demo/src/index.html",
             "browser": "projects/demo/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "projects/demo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -117,24 +119,14 @@
           "builder": "@angular/build:extract-i18n"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "buildTarget": "demo:build:development",
             "tsConfig": "projects/demo/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/demo/public"
-              }
-            ],
-            "styles": [
-              "projects/demo/src/styles.scss"
-            ],
-            "scripts": []
+            "runner": "vitest",
+            "browsers": ["chromium"],
+            "headless": true,
+            "providersFile": "projects/demo/src/test-providers.ts"
           }
         },
         "lint": {

@@ -12,9 +12,6 @@
     "isolatedModules": true,
     "target": "ES2022",
     "module": "preserve",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "lib": [
       "ES2022",
       "dom"
