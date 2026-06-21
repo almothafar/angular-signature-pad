@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, forwardRef, inject, input, output, viewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, forwardRef, inject, input, output, viewChild, ChangeDetectionStrategy} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {SignaturePadComponent} from 'angular-signature-pad';
 import {NgSignaturePadOptions} from "projects/angular-signature-pad/src/lib/angular-signature-pad.component";
@@ -21,6 +21,7 @@ export type SignatureFieldConfig = {
     },
   ],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SignaturePadComponent]
 })
 export class SignatureFieldComponent implements ControlValueAccessor, AfterViewInit {
