@@ -156,3 +156,28 @@ form {
     font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
   }
 }
+
+.app-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  max-width: $base-width;
+  margin: 8px auto 32px;
+  padding: 14px 4px 0;
+  border-top: 1px solid #e9ecef;
+  color: #868e96;
+  font-size: 12px;
+
+  a { color: $primary; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  code {
+    padding: 1px 6px;
+    background: #f1f3f5;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+
+  span:last-of-type { margin-left: auto; }
+}

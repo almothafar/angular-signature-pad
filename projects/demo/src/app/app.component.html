@@ -35,3 +35,16 @@
     </div>
   }
 </form>
+
+<footer class="app-footer">
+  <span>
+    <a href="https://www.npmjs.com/package/@almothafar/angular-signature-pad" target="_blank" rel="noopener">&#64;almothafar/angular-signature-pad</a>
+    @if (version) {
+      <code>v{{ version }}</code>
+    }
+  </span>
+  @if (buildTime) {
+    <span>Demo built: {{ buildTime | date: 'yyyy-MM-dd HH:mm' : 'UTC' }} UTC</span>
+  }
+  <a href="https://github.com/almothafar/angular-signature-pad" target="_blank" rel="noopener">GitHub</a>
+</footer>
