@@ -1,7 +1,9 @@
 # Angular Signature Pad
 
-[![npm downloads](https://img.shields.io/npm/dt/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
+[![CI](https://github.com/almothafar/angular-signature-pad/actions/workflows/ci.yml/badge.svg)](https://github.com/almothafar/angular-signature-pad/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
+[![npm downloads](https://img.shields.io/npm/dm/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@almothafar/angular-signature-pad.svg)](https://bundlephobia.com/package/@almothafar/angular-signature-pad)
 [![npm license](https://img.shields.io/npm/l/@almothafar/angular-signature-pad.svg)](https://www.npmjs.com/package/@almothafar/angular-signature-pad)
 [![GitHub issues](https://img.shields.io/github/issues/almothafar/angular-signature-pad.svg)](https://github.com/almothafar/angular-signature-pad/issues)
 [![Angular 22](https://img.shields.io/badge/Angular-22-DD0031?logo=angular)](https://angular.io/)

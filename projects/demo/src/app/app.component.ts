@@ -1,7 +1,9 @@
+import {DatePipe} from '@angular/common';
 import {Component, ElementRef, inject, viewChild, viewChildren, ChangeDetectionStrategy} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SignatureFieldComponent, SignatureFieldConfig} from './signature-field/signature-field.component';
 import {SignatureViewComponent} from './signature-view/signature-view.component';
+import {BUILD_INFO} from './build-info';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import {SignatureViewComponent} from './signature-view/signature-view.component'
   styleUrl: './app.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, SignatureFieldComponent, SignatureViewComponent]
+  imports: [ReactiveFormsModule, SignatureFieldComponent, SignatureViewComponent, DatePipe]
 })
 export class AppComponent {
   public items: SignatureFieldConfig[] = [
@@ -41,6 +43,9 @@ export class AppComponent {
   public form: FormGroup;
   public result: string[] = [];
   public submitted = false;
+
+  public readonly version = BUILD_INFO.version;
+  public readonly buildTime = BUILD_INFO.timestamp;
 
   public get canSubmit(): boolean {
     return Object.values(this.form.value).some(v => !!v);
