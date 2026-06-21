@@ -1,6 +1,6 @@
 {
   "name": "@almothafar/angular-signature-pad",
-  "version": "9.0.0",
+  "version": "10.0.0",
   "scripts": {
     "build": "ng-packagr -p package.json",
     "build:prod": "rimraf dist && ng build angular-signature-pad --prod"

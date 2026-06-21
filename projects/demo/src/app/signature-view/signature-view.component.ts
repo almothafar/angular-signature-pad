@@ -9,7 +9,7 @@ import {Component, ElementRef, inject, input, ChangeDetectionStrategy} from '@an
   standalone: true
 })
 export class SignatureViewComponent {
-  readonly signature = input<string>(undefined);
+  readonly signature = input<string>();
 
   private _elementRef = inject(ElementRef);
   public nativeElement: HTMLElement;

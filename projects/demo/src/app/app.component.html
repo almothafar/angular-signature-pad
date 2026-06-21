@@ -20,7 +20,7 @@
                                (signatureChanged)="updateSigPreview(idx, $event)" />
         </div>
         <div class="col">
-          <app-signature-view [signature]="$safeNavigationMigration(result?.at(idx))" />
+          <app-signature-view [signature]="result?.at(idx)" />
         </div>
       </div>
     </div>

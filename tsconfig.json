@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "esModuleInterop": true,
@@ -9,25 +8,26 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "preserve",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "ESNext",
-      "DOM"
+      "ES2022",
+      "dom"
     ],
     "paths": {
       "angular-signature-pad": [
-        "dist/angular-signature-pad",
-        "dist/"
+        "./dist/angular-signature-pad",
+        "./dist/"
       ],
       "demo": [
-        "demo"
+        "./demo"
       ]
-    },
-    "useDefineForClassFields": false
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
