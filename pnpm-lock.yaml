@@ -38,28 +38,28 @@ importers:
     devDependencies:
       '@angular-eslint/builder':
         specifier: ^22.1.0
-        version: 22.1.0(@angular/cli@22.0.7(@types/node@26.1.1)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)
+        version: 22.1.0(@angular/cli@22.0.7(@types/node@26.1.2)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)
       '@angular-eslint/schematics':
         specifier: ^22.1.0
-        version: 22.1.0(@angular-eslint/template-parser@22.1.0(eslint@10.7.0)(typescript@6.0.3))(@angular/cli@22.0.7(@types/node@26.1.1)(chokidar@5.0.0))(@typescript-eslint/types@8.64.0)(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)
+        version: 22.1.0(@angular-eslint/template-parser@22.1.0(eslint@10.7.0)(typescript@6.0.3))(@angular/cli@22.0.7(@types/node@26.1.2)(chokidar@5.0.0))(@typescript-eslint/types@8.64.0)(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)
       '@angular/build':
         specifier: ^22.0.7
-        version: 22.0.7(@angular/compiler-cli@22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3))(@angular/compiler@22.0.7)(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.7(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)))(@types/node@26.1.1)(chokidar@5.0.0)(less@4.6.7)(ng-packagr@22.0.1(@angular/compiler-cli@22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3))(tslib@2.8.1)(typescript@6.0.3))(postcss@8.5.19)(tslib@2.8.1)(typescript@6.0.3)(vitest@4.1.10)
+        version: 22.0.7(@angular/compiler-cli@22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3))(@angular/compiler@22.0.7)(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.7(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)))(@types/node@26.1.2)(chokidar@5.0.0)(less@4.6.7)(ng-packagr@22.0.1(@angular/compiler-cli@22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3))(tslib@2.8.1)(typescript@6.0.3))(postcss@8.5.19)(tslib@2.8.1)(typescript@6.0.3)(vitest@4.1.10)
       '@angular/cli':
         specifier: ^22.0.7
-        version: 22.0.7(@types/node@26.1.1)(chokidar@5.0.0)
+        version: 22.0.7(@types/node@26.1.2)(chokidar@5.0.0)
       '@angular/compiler-cli':
         specifier: ^22.0.7
         version: 22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3)
       '@types/node':
-        specifier: ^26.1.1
-        version: 26.1.1
+        specifier: ^26.1.2
+        version: 26.1.2
       '@vitest/browser-playwright':
         specifier: ^4.1.10
-        version: 4.1.10(playwright@1.61.1)(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)
+        version: 4.1.10(playwright@1.61.1)(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)
       angular-eslint:
         specifier: ^22.1.0
-        version: 22.1.0(@angular/cli@22.0.7(@types/node@26.1.1)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript-eslint@8.64.0(eslint@10.7.0)(typescript@6.0.3))(typescript@6.0.3)
+        version: 22.1.0(@angular/cli@22.0.7(@types/node@26.1.2)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript-eslint@8.64.0(eslint@10.7.0)(typescript@6.0.3))(typescript@6.0.3)
       eslint:
         specifier: ^10.7.0
         version: 10.7.0
@@ -80,7 +80,7 @@ importers:
         version: 8.64.0(eslint@10.7.0)(typescript@6.0.3)
       vitest:
         specifier: ^4.1.10
-        version: 4.1.10(@types/node@26.1.1)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))
+        version: 4.1.10(@types/node@26.1.2)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))
 
 packages:
 
@@ -1637,8 +1637,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@26.1.1':
-    resolution: {integrity: sha512-nxAkRSVkN1Y0JC1W8ky/fTfkGsMmcrRsbx+3XoZE+rMOX71kLYTV7fLXpqud1GpbpP5TuffXFqfX7fH2GgZREw==}
+  '@types/node@26.1.2':
+    resolution: {integrity: sha512-Vu4a5UFA9rIIFJ7rB/Vaafh9lrCQszopTCx6KjFboXTGQbPNasehVR5TEiithSDGyd1DEiUByggTZsg8jukeIg==}
 
   '@typescript-eslint/eslint-plugin@8.64.0':
     resolution: {integrity: sha512-CGvQPBxN3wZLu6Rz2kFUpZeoCm78xUic92ck39KPePkO1NPOwjCqdQnm5Q87tpWw9vcBvW8XLrDXjH9PWYtJ3Q==}
@@ -3467,11 +3467,11 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-eslint/builder@22.1.0(@angular/cli@22.0.7(@types/node@26.1.1)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)':
+  '@angular-eslint/builder@22.1.0(@angular/cli@22.0.7(@types/node@26.1.2)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)':
     dependencies:
       '@angular-devkit/architect': 0.2200.6(chokidar@5.0.0)
       '@angular-devkit/core': 22.0.6(chokidar@5.0.0)
-      '@angular/cli': 22.0.7(@types/node@26.1.1)(chokidar@5.0.0)
+      '@angular/cli': 22.0.7(@types/node@26.1.2)(chokidar@5.0.0)
       eslint: 10.7.0
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -3500,13 +3500,13 @@ snapshots:
       ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
 
-  '@angular-eslint/schematics@22.1.0(@angular-eslint/template-parser@22.1.0(eslint@10.7.0)(typescript@6.0.3))(@angular/cli@22.0.7(@types/node@26.1.1)(chokidar@5.0.0))(@typescript-eslint/types@8.64.0)(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)':
+  '@angular-eslint/schematics@22.1.0(@angular-eslint/template-parser@22.1.0(eslint@10.7.0)(typescript@6.0.3))(@angular/cli@22.0.7(@types/node@26.1.2)(chokidar@5.0.0))(@typescript-eslint/types@8.64.0)(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)':
     dependencies:
       '@angular-devkit/core': 22.0.6(chokidar@5.0.0)
       '@angular-devkit/schematics': 22.0.6(chokidar@5.0.0)
       '@angular-eslint/eslint-plugin': 22.1.0(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(eslint@10.7.0)(typescript@6.0.3)
       '@angular-eslint/eslint-plugin-template': 22.1.0(@angular-eslint/template-parser@22.1.0(eslint@10.7.0)(typescript@6.0.3))(@typescript-eslint/types@8.64.0)(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(eslint@10.7.0)(typescript@6.0.3)
-      '@angular/cli': 22.0.7(@types/node@26.1.1)(chokidar@5.0.0)
+      '@angular/cli': 22.0.7(@types/node@26.1.2)(chokidar@5.0.0)
       ignore: 7.0.5
       semver: 7.8.5
       strip-json-comments: 3.1.1
@@ -3532,7 +3532,7 @@ snapshots:
       eslint: 10.7.0
       typescript: 6.0.3
 
-  '@angular/build@22.0.7(@angular/compiler-cli@22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3))(@angular/compiler@22.0.7)(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.7(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)))(@types/node@26.1.1)(chokidar@5.0.0)(less@4.6.7)(ng-packagr@22.0.1(@angular/compiler-cli@22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3))(tslib@2.8.1)(typescript@6.0.3))(postcss@8.5.19)(tslib@2.8.1)(typescript@6.0.3)(vitest@4.1.10)':
+  '@angular/build@22.0.7(@angular/compiler-cli@22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3))(@angular/compiler@22.0.7)(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2))(@angular/platform-browser@22.0.7(@angular/common@22.0.7(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)))(@types/node@26.1.2)(chokidar@5.0.0)(less@4.6.7)(ng-packagr@22.0.1(@angular/compiler-cli@22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3))(tslib@2.8.1)(typescript@6.0.3))(postcss@8.5.19)(tslib@2.8.1)(typescript@6.0.3)(vitest@4.1.10)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2200.7(chokidar@5.0.0)
@@ -3541,8 +3541,8 @@ snapshots:
       '@babel/core': 7.29.7
       '@babel/helper-annotate-as-pure': 7.29.7
       '@babel/helper-split-export-declaration': 7.24.7
-      '@inquirer/confirm': 6.0.12(@types/node@26.1.1)
-      '@vitejs/plugin-basic-ssl': 2.3.0(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))
+      '@inquirer/confirm': 6.0.12(@types/node@26.1.2)
+      '@vitejs/plugin-basic-ssl': 2.3.0(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))
       beasties: 0.4.2
       browserslist: 4.28.6
       esbuild: 0.28.1
@@ -3561,7 +3561,7 @@ snapshots:
       tinyglobby: 0.2.16
       tslib: 2.8.1
       typescript: 6.0.3
-      vite: 7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0)
+      vite: 7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0)
       watchpack: 2.5.1
     optionalDependencies:
       '@angular/core': 22.0.7(@angular/compiler@22.0.7)(rxjs@7.8.2)
@@ -3570,7 +3570,7 @@ snapshots:
       lmdb: 3.5.4
       ng-packagr: 22.0.1(@angular/compiler-cli@22.0.7(@angular/compiler@22.0.7)(typescript@6.0.3))(tslib@2.8.1)(typescript@6.0.3)
       postcss: 8.5.19
-      vitest: 4.1.10(@types/node@26.1.1)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))
+      vitest: 4.1.10(@types/node@26.1.2)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))
     transitivePeerDependencies:
       - '@types/node'
       - chokidar
@@ -3584,13 +3584,13 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/cli@22.0.7(@types/node@26.1.1)(chokidar@5.0.0)':
+  '@angular/cli@22.0.7(@types/node@26.1.2)(chokidar@5.0.0)':
     dependencies:
       '@angular-devkit/architect': 0.2200.7(chokidar@5.0.0)
       '@angular-devkit/core': 22.0.7(chokidar@5.0.0)
       '@angular-devkit/schematics': 22.0.7(chokidar@5.0.0)
-      '@inquirer/prompts': 8.4.2(@types/node@26.1.1)
-      '@listr2/prompt-adapter-inquirer': 4.2.3(@inquirer/prompts@8.4.2(@types/node@26.1.1))(@types/node@26.1.1)(listr2@10.2.1)
+      '@inquirer/prompts': 8.4.2(@types/node@26.1.2)
+      '@listr2/prompt-adapter-inquirer': 4.2.3(@inquirer/prompts@8.4.2(@types/node@26.1.2))(@types/node@26.1.2)(listr2@10.2.1)
       '@modelcontextprotocol/sdk': 1.29.0(zod@4.4.2)
       '@schematics/angular': 22.0.7(chokidar@5.0.0)
       '@yarnpkg/lockfile': 1.1.0
@@ -3990,129 +3990,129 @@ snapshots:
 
   '@inquirer/ansi@2.0.7': {}
 
-  '@inquirer/checkbox@5.2.1(@types/node@26.1.1)':
+  '@inquirer/checkbox@5.2.1(@types/node@26.1.2)':
     dependencies:
       '@inquirer/ansi': 2.0.7
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
       '@inquirer/figures': 2.0.7
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
-  '@inquirer/confirm@6.0.12(@types/node@26.1.1)':
+  '@inquirer/confirm@6.0.12(@types/node@26.1.2)':
     dependencies:
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
-  '@inquirer/confirm@6.1.1(@types/node@26.1.1)':
+  '@inquirer/confirm@6.1.1(@types/node@26.1.2)':
     dependencies:
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
-  '@inquirer/core@11.2.1(@types/node@26.1.1)':
+  '@inquirer/core@11.2.1(@types/node@26.1.2)':
     dependencies:
       '@inquirer/ansi': 2.0.7
       '@inquirer/figures': 2.0.7
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
       cli-width: 4.1.0
       fast-wrap-ansi: 0.2.2
       mute-stream: 3.0.0
       signal-exit: 4.1.0
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
-  '@inquirer/editor@5.2.2(@types/node@26.1.1)':
+  '@inquirer/editor@5.2.2(@types/node@26.1.2)':
     dependencies:
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/external-editor': 3.0.3(@types/node@26.1.1)
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/external-editor': 3.0.3(@types/node@26.1.2)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
-  '@inquirer/expand@5.1.1(@types/node@26.1.1)':
+  '@inquirer/expand@5.1.1(@types/node@26.1.2)':
     dependencies:
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
-  '@inquirer/external-editor@3.0.3(@types/node@26.1.1)':
+  '@inquirer/external-editor@3.0.3(@types/node@26.1.2)':
     dependencies:
       chardet: 2.2.0
       iconv-lite: 0.7.3
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
   '@inquirer/figures@2.0.7': {}
 
-  '@inquirer/input@5.1.2(@types/node@26.1.1)':
+  '@inquirer/input@5.1.2(@types/node@26.1.2)':
     dependencies:
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
-  '@inquirer/number@4.1.1(@types/node@26.1.1)':
+  '@inquirer/number@4.1.1(@types/node@26.1.2)':
     dependencies:
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
-  '@inquirer/password@5.1.1(@types/node@26.1.1)':
-    dependencies:
-      '@inquirer/ansi': 2.0.7
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
-    optionalDependencies:
-      '@types/node': 26.1.1
-
-  '@inquirer/prompts@8.4.2(@types/node@26.1.1)':
-    dependencies:
-      '@inquirer/checkbox': 5.2.1(@types/node@26.1.1)
-      '@inquirer/confirm': 6.1.1(@types/node@26.1.1)
-      '@inquirer/editor': 5.2.2(@types/node@26.1.1)
-      '@inquirer/expand': 5.1.1(@types/node@26.1.1)
-      '@inquirer/input': 5.1.2(@types/node@26.1.1)
-      '@inquirer/number': 4.1.1(@types/node@26.1.1)
-      '@inquirer/password': 5.1.1(@types/node@26.1.1)
-      '@inquirer/rawlist': 5.3.1(@types/node@26.1.1)
-      '@inquirer/search': 4.2.1(@types/node@26.1.1)
-      '@inquirer/select': 5.2.1(@types/node@26.1.1)
-    optionalDependencies:
-      '@types/node': 26.1.1
-
-  '@inquirer/rawlist@5.3.1(@types/node@26.1.1)':
-    dependencies:
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
-    optionalDependencies:
-      '@types/node': 26.1.1
-
-  '@inquirer/search@4.2.1(@types/node@26.1.1)':
-    dependencies:
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/figures': 2.0.7
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
-    optionalDependencies:
-      '@types/node': 26.1.1
-
-  '@inquirer/select@5.2.1(@types/node@26.1.1)':
+  '@inquirer/password@5.1.1(@types/node@26.1.2)':
     dependencies:
       '@inquirer/ansi': 2.0.7
-      '@inquirer/core': 11.2.1(@types/node@26.1.1)
-      '@inquirer/figures': 2.0.7
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
 
-  '@inquirer/type@4.0.7(@types/node@26.1.1)':
+  '@inquirer/prompts@8.4.2(@types/node@26.1.2)':
+    dependencies:
+      '@inquirer/checkbox': 5.2.1(@types/node@26.1.2)
+      '@inquirer/confirm': 6.1.1(@types/node@26.1.2)
+      '@inquirer/editor': 5.2.2(@types/node@26.1.2)
+      '@inquirer/expand': 5.1.1(@types/node@26.1.2)
+      '@inquirer/input': 5.1.2(@types/node@26.1.2)
+      '@inquirer/number': 4.1.1(@types/node@26.1.2)
+      '@inquirer/password': 5.1.1(@types/node@26.1.2)
+      '@inquirer/rawlist': 5.3.1(@types/node@26.1.2)
+      '@inquirer/search': 4.2.1(@types/node@26.1.2)
+      '@inquirer/select': 5.2.1(@types/node@26.1.2)
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
+
+  '@inquirer/rawlist@5.3.1(@types/node@26.1.2)':
+    dependencies:
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
+    optionalDependencies:
+      '@types/node': 26.1.2
+
+  '@inquirer/search@4.2.1(@types/node@26.1.2)':
+    dependencies:
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/figures': 2.0.7
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
+    optionalDependencies:
+      '@types/node': 26.1.2
+
+  '@inquirer/select@5.2.1(@types/node@26.1.2)':
+    dependencies:
+      '@inquirer/ansi': 2.0.7
+      '@inquirer/core': 11.2.1(@types/node@26.1.2)
+      '@inquirer/figures': 2.0.7
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
+    optionalDependencies:
+      '@types/node': 26.1.2
+
+  '@inquirer/type@4.0.7(@types/node@26.1.2)':
+    optionalDependencies:
+      '@types/node': 26.1.2
 
   '@isaacs/fs-minipass@4.0.1':
     dependencies:
@@ -4137,10 +4137,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@listr2/prompt-adapter-inquirer@4.2.3(@inquirer/prompts@8.4.2(@types/node@26.1.1))(@types/node@26.1.1)(listr2@10.2.1)':
+  '@listr2/prompt-adapter-inquirer@4.2.3(@inquirer/prompts@8.4.2(@types/node@26.1.2))(@types/node@26.1.2)(listr2@10.2.1)':
     dependencies:
-      '@inquirer/prompts': 8.4.2(@types/node@26.1.1)
-      '@inquirer/type': 4.0.7(@types/node@26.1.1)
+      '@inquirer/prompts': 8.4.2(@types/node@26.1.2)
+      '@inquirer/type': 4.0.7(@types/node@26.1.2)
       listr2: 10.2.1
     transitivePeerDependencies:
       - '@types/node'
@@ -4632,7 +4632,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@26.1.1':
+  '@types/node@26.1.2':
     dependencies:
       undici-types: 8.3.0
 
@@ -4727,33 +4727,33 @@ snapshots:
       '@typescript-eslint/types': 8.64.0
       eslint-visitor-keys: 5.0.1
 
-  '@vitejs/plugin-basic-ssl@2.3.0(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))':
+  '@vitejs/plugin-basic-ssl@2.3.0(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))':
     dependencies:
-      vite: 7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0)
+      vite: 7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0)
 
-  '@vitest/browser-playwright@4.1.10(playwright@1.61.1)(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)':
+  '@vitest/browser-playwright@4.1.10(playwright@1.61.1)(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)':
     dependencies:
-      '@vitest/browser': 4.1.10(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)
-      '@vitest/mocker': 4.1.10(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))
+      '@vitest/browser': 4.1.10(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)
+      '@vitest/mocker': 4.1.10(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))
       playwright: 1.61.1
       tinyrainbow: 3.1.0
-      vitest: 4.1.10(@types/node@26.1.1)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))
+      vitest: 4.1.10(@types/node@26.1.2)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))
     transitivePeerDependencies:
       - bufferutil
       - msw
       - utf-8-validate
       - vite
 
-  '@vitest/browser@4.1.10(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)':
+  '@vitest/browser@4.1.10(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)':
     dependencies:
       '@blazediff/core': 1.9.1
-      '@vitest/mocker': 4.1.10(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))
+      '@vitest/mocker': 4.1.10(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))
       '@vitest/utils': 4.1.10
       magic-string: 0.30.21
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.1.0
-      vitest: 4.1.10(@types/node@26.1.1)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))
+      vitest: 4.1.10(@types/node@26.1.2)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))
       ws: 8.21.0
     transitivePeerDependencies:
       - bufferutil
@@ -4770,13 +4770,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.10(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))':
+  '@vitest/mocker@4.1.10(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))':
     dependencies:
       '@vitest/spy': 4.1.10
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0)
+      vite: 7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0)
 
   '@vitest/pretty-format@4.1.10':
     dependencies:
@@ -4856,16 +4856,16 @@ snapshots:
       '@algolia/requester-fetch': 5.52.0
       '@algolia/requester-node-http': 5.52.0
 
-  angular-eslint@22.1.0(@angular/cli@22.0.7(@types/node@26.1.1)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript-eslint@8.64.0(eslint@10.7.0)(typescript@6.0.3))(typescript@6.0.3):
+  angular-eslint@22.1.0(@angular/cli@22.0.7(@types/node@26.1.2)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript-eslint@8.64.0(eslint@10.7.0)(typescript@6.0.3))(typescript@6.0.3):
     dependencies:
       '@angular-devkit/core': 22.0.6(chokidar@5.0.0)
       '@angular-devkit/schematics': 22.0.6(chokidar@5.0.0)
-      '@angular-eslint/builder': 22.1.0(@angular/cli@22.0.7(@types/node@26.1.1)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)
+      '@angular-eslint/builder': 22.1.0(@angular/cli@22.0.7(@types/node@26.1.2)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)
       '@angular-eslint/eslint-plugin': 22.1.0(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(eslint@10.7.0)(typescript@6.0.3)
       '@angular-eslint/eslint-plugin-template': 22.1.0(@angular-eslint/template-parser@22.1.0(eslint@10.7.0)(typescript@6.0.3))(@typescript-eslint/types@8.64.0)(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(eslint@10.7.0)(typescript@6.0.3)
-      '@angular-eslint/schematics': 22.1.0(@angular-eslint/template-parser@22.1.0(eslint@10.7.0)(typescript@6.0.3))(@angular/cli@22.0.7(@types/node@26.1.1)(chokidar@5.0.0))(@typescript-eslint/types@8.64.0)(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)
+      '@angular-eslint/schematics': 22.1.0(@angular-eslint/template-parser@22.1.0(eslint@10.7.0)(typescript@6.0.3))(@angular/cli@22.0.7(@types/node@26.1.2)(chokidar@5.0.0))(@typescript-eslint/types@8.64.0)(@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3))(chokidar@5.0.0)(eslint@10.7.0)(typescript@6.0.3)
       '@angular-eslint/template-parser': 22.1.0(eslint@10.7.0)(typescript@6.0.3)
-      '@angular/cli': 22.0.7(@types/node@26.1.1)(chokidar@5.0.0)
+      '@angular/cli': 22.0.7(@types/node@26.1.2)(chokidar@5.0.0)
       '@typescript-eslint/types': 8.64.0
       '@typescript-eslint/utils': 8.64.0(eslint@10.7.0)(typescript@6.0.3)
       eslint: 10.7.0
@@ -6398,7 +6398,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0):
+  vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
@@ -6407,15 +6407,15 @@ snapshots:
       rollup: 4.62.2
       tinyglobby: 0.2.17
     optionalDependencies:
-      '@types/node': 26.1.1
+      '@types/node': 26.1.2
       fsevents: 2.3.3
       less: 4.6.7
       sass: 1.99.0
 
-  vitest@4.1.10(@types/node@26.1.1)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0)):
+  vitest@4.1.10(@types/node@26.1.2)(@vitest/browser-playwright@4.1.10)(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0)):
     dependencies:
       '@vitest/expect': 4.1.10
-      '@vitest/mocker': 4.1.10(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))
+      '@vitest/mocker': 4.1.10(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))
       '@vitest/pretty-format': 4.1.10
       '@vitest/runner': 4.1.10
       '@vitest/snapshot': 4.1.10
@@ -6432,11 +6432,11 @@ snapshots:
       tinyexec: 1.2.4
       tinyglobby: 0.2.17
       tinyrainbow: 3.1.0
-      vite: 7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0)
+      vite: 7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 26.1.1
-      '@vitest/browser-playwright': 4.1.10(playwright@1.61.1)(vite@7.3.5(@types/node@26.1.1)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)
+      '@types/node': 26.1.2
+      '@vitest/browser-playwright': 4.1.10(playwright@1.61.1)(vite@7.3.5(@types/node@26.1.2)(less@4.6.7)(sass@1.99.0))(vitest@4.1.10)
     transitivePeerDependencies:
       - msw
 
