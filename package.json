@@ -20,12 +20,12 @@
     "copyExtra": "node -e \"require('fs').copyFileSync('README.md', './dist/README.md');require('fs').copyFileSync('CHANGELOG.md', './dist/CHANGELOG.md');\""
   },
   "dependencies": {
-    "@angular/common": "^22.2.3",
-    "@angular/compiler": "^22.2.3",
-    "@angular/core": "^22.2.3",
-    "@angular/forms": "^22.2.3",
-    "@angular/platform-browser": "^22.2.3",
-    "@angular/router": "^22.2.3",
+    "@angular/common": "^22.2.4",
+    "@angular/compiler": "^22.2.4",
+    "@angular/core": "^22.2.4",
+    "@angular/forms": "^22.2.4",
+    "@angular/platform-browser": "^22.2.4",
+    "@angular/router": "^22.2.4",
     "rxjs": "^7.8.2",
     "signature_pad": "^5.1.4",
     "tslib": "^2.8.1"
@@ -33,9 +33,9 @@
   "devDependencies": {
     "@angular-eslint/builder": "^22.6.0",
     "@angular-eslint/schematics": "^22.6.0",
-    "@angular/build": "^22.2.4",
-    "@angular/cli": "^22.2.4",
-    "@angular/compiler-cli": "^22.2.3",
+    "@angular/build": "^22.2.5",
+    "@angular/cli": "^22.2.5",
+    "@angular/compiler-cli": "^22.2.4",
     "@types/node": "^26.6.5",
     "@vitest/browser-playwright": "^5.0.5",
     "angular-eslint": "^22.6.0",
